@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,
+        maximum-scale=1.0,user-scalable=no">
+
   <title>HOKM</title>
 
+  <!-- Telegram -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -16,12 +23,14 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg,#3b1747,#160d20,#09070d);
+      background:
+        radial-gradient(circle at top, #4b185b 0%, #180d20 45%, #08060b 100%);
       color: white;
       font-family: Arial, sans-serif;
     }
 
     .app {
+      width: 100%;
       max-width: 520px;
       min-height: 100vh;
       margin: auto;
@@ -35,10 +44,10 @@
     }
 
     .coins {
-      background: rgba(255,255,255,.1);
-      padding: 12px 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 10px 15px;
       border-radius: 25px;
-      font-size: 18px;
     }
 
     .player {
@@ -46,65 +55,74 @@
     }
 
     .avatar {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      background: linear-gradient(135deg,#ff3bd4,#8b35ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
+      width: 52px;
+      height: 52px;
       margin: auto;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg,#ff28d7,#7e32ff);
+      font-size: 25px;
+    }
+
+    .player-name {
+      margin-top: 5px;
+      font-size: 14px;
     }
 
     .logo {
       text-align: center;
-      margin: 60px 0 35px;
+      margin-top: 55px;
+      margin-bottom: 35px;
     }
 
     .logo h1 {
-      font-size: 58px;
       margin: 0;
-      letter-spacing: 5px;
-      color: #e74cff;
+      font-size: 58px;
+      letter-spacing: 6px;
+      color: #e747ff;
+      text-shadow: 0 0 25px rgba(231,71,255,.4);
     }
 
     .logo p {
-      font-size: 18px;
-      color: #ccc;
+      color: #aaa;
+      margin-top: 8px;
     }
 
     .card {
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.07);
       border: 1px solid rgba(255,255,255,.1);
-      border-radius: 30px;
-      padding: 30px 20px;
+      border-radius: 28px;
+      padding: 28px 20px;
       text-align: center;
+      backdrop-filter: blur(15px);
     }
 
-    .card-icon {
+    .icon {
       font-size: 60px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
-    .card h2 {
-      font-size: 25px;
+    h2 {
+      margin: 10px 0;
     }
 
-    .card p {
-      color: #ccc;
+    .description {
+      color: #aaa;
+      line-height: 1.7;
     }
 
     button {
       width: 100%;
-      padding: 18px;
-      margin-top: 15px;
       border: 0;
-      border-radius: 25px;
-      font-size: 18px;
-      font-weight: bold;
+      border-radius: 20px;
+      padding: 17px;
+      margin-top: 14px;
       color: white;
-      background: linear-gradient(135deg,#ff28cf,#8535ff);
+      font-size: 17px;
+      font-weight: bold;
+      background: linear-gradient(135deg,#ff27d1,#8534ff);
       cursor: pointer;
     }
 
@@ -113,35 +131,59 @@
       border: 1px solid rgba(255,255,255,.1);
     }
 
-    .room-box {
-      display: none;
-      margin-top: 20px;
-    }
-
     input {
       width: 100%;
       padding: 16px;
-      border-radius: 15px;
-      border: 1px solid #555;
-      background: #18131d;
-      color: white;
-      font-size: 18px;
-      text-align: center;
+      margin-top: 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.15);
       outline: none;
+      background: rgba(0,0,0,.25);
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 4px;
     }
 
-    .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: rgba(255,255,255,.08);
-      border-radius: 15px;
+    .hidden {
       display: none;
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.07);
+      line-height: 1.8;
+    }
+
+    .room-code {
+      font-size: 35px;
+      font-weight: bold;
+      letter-spacing: 8px;
+      margin: 20px 0;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .players {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .player-slot {
+      padding: 14px;
+      margin-top: 8px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.06);
     }
 
     .footer {
       text-align: center;
-      color: #777;
+      color: #666;
       margin-top: 30px;
+      font-size: 12px;
     }
   </style>
 </head>
@@ -151,28 +193,37 @@
 <div class="app">
 
   <div class="top">
-    <div class="coins">🪙 <span id="coins">0</span></div>
+
+    <div class="coins">
+      🪙 <span id="coins">0</span>
+    </div>
 
     <div class="player">
       <div class="avatar">♠</div>
-      <b id="username">Player</b>
-      <div style="color:#aaa;font-size:13px;">آماده بازی</div>
+      <div class="player-name" id="username">
+        Player
+      </div>
     </div>
+
   </div>
+
 
   <div class="logo">
     <h1>HOKM</h1>
     <p>Ultimate Card Game</p>
   </div>
 
-  <div class="card">
 
-    <div class="card-icon">🃏</div>
+  <!-- HOME -->
+
+  <div class="card" id="home">
+
+    <div class="icon">🃏</div>
 
     <h2>آماده‌ای؟</h2>
 
-    <p>
-      وارد بازی حکم شو و با بازیکنان واقعی رقابت کن
+    <p class="description">
+      وارد بازی حکم شو و با دوستانت بازی کن.
     </p>
 
     <button onclick="startGame()">
@@ -183,27 +234,84 @@
       👥 ساخت روم
     </button>
 
-    <button class="secondary" onclick="showJoinRoom()">
+    <button class="secondary" onclick="showJoin()">
       🔗 ورود به روم
     </button>
 
-    <div id="roomBox" class="room-box">
+  </div>
 
-      <input
-        id="roomCode"
-        placeholder="کد روم را وارد کنید"
-        maxlength="6"
-      >
 
-      <button onclick="joinRoom()">
-        🚪 ورود
-      </button>
+  <!-- JOIN -->
+
+  <div class="card hidden" id="joinPage">
+
+    <div class="icon">🔗</div>
+
+    <h2>ورود به روم</h2>
+
+    <p class="description">
+      کد ۶ رقمی روم را وارد کن.
+    </p>
+
+    <input
+      id="joinCode"
+      maxlength="6"
+      inputmode="numeric"
+      placeholder="123456">
+
+    <button onclick="joinRoom()">
+      🚪 ورود به روم
+    </button>
+
+    <button class="secondary" onclick="goHome()">
+      ↩️ برگشت
+    </button>
+
+    <div id="joinMessage"></div>
+
+  </div>
+
+
+  <!-- ROOM -->
+
+  <div class="card hidden" id="roomPage">
+
+    <div class="icon">🃏</div>
+
+    <h2>روم بازی</h2>
+
+    <p class="description">
+      کد روم را برای دوستانت بفرست.
+    </p>
+
+    <div class="room-code" id="roomCode">
+      ------
+    </div>
+
+    <button onclick="copyRoomCode()">
+      📋 کپی کد روم
+    </button>
+
+    <button class="secondary" onclick="shareRoom()">
+      📤 دعوت دوستان
+    </button>
+
+    <div class="players">
+
+      <h3>بازیکنان</h3>
+
+      <div id="playersList">
+        در حال دریافت بازیکنان...
+      </div>
 
     </div>
 
-    <div id="result" class="result"></div>
+    <button class="secondary" onclick="goHome()">
+      ↩️ خروج
+    </button>
 
   </div>
+
 
   <div class="footer">
     HOKM • Telegram Mini App
@@ -211,25 +319,38 @@
 
 </div>
 
+
 <script>
 
-  /* =====================================
-     SUPABASE
-     ===================================== */
+  /* ==========================================
+     SUPABASE CONFIG
+     ========================================== */
 
-  const SUPABASE_URL = "https://uhgzikijqllrttwdykaah.supabase.co";
+  /*
+    فقط این دو مقدار را وارد کن.
+  */
 
-  const SUPABASE_KEY = "sb_publishable_jgq1e7NvxiANV8pEyTYKlA_ZobviYyi";
+  const SUPABASE_URL =
+    "https://uhgikijqlirttwdykaah.supabase.co";
 
-  const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+  const SUPABASE_KEY =
+    "sb_publishable_jgq1e7NvxiANV8pEyTYKlA_ZobviYyi";
 
 
-  /* =====================================
+  /* ==========================================
+     SUPABASE CLIENT
+     ========================================== */
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  /* ==========================================
      TELEGRAM
-     ===================================== */
+     ========================================== */
 
   const tg = window.Telegram.WebApp;
 
@@ -237,147 +358,230 @@
   tg.expand();
 
 
-  let telegramUser = tg.initDataUnsafe?.user;
-
-  let telegramId =
-    telegramUser?.id?.toString() ||
-    "guest-" + Date.now();
-
-  let username =
-    telegramUser?.first_name ||
-    "Player";
-
-  document.getElementById("username").textContent = username;
+  const telegramUser =
+    tg.initDataUnsafe &&
+    tg.initDataUnsafe.user
+      ? tg.initDataUnsafe.user
+      : null;
 
 
-  /* =====================================
-     HELPERS
-     ===================================== */
+  const telegramId =
+    telegramUser && telegramUser.id
+      ? String(telegramUser.id)
+      : "guest-" + Date.now();
 
-  function showResult(message) {
 
-    const result = document.getElementById("result");
+  const username =
+    telegramUser && telegramUser.first_name
+      ? telegramUser.first_name
+      : "Player";
 
-    result.style.display = "block";
-    result.innerHTML = message;
 
+  document.getElementById("username").textContent =
+    username;
+
+
+  /* ==========================================
+     VARIABLES
+     ========================================== */
+
+  let currentRoom = null;
+  let currentRoomId = null;
+  let realtimeChannel = null;
+
+
+  /* ==========================================
+     UI
+     ========================================== */
+
+  function hideAllPages() {
+
+    document.getElementById("home")
+      .classList.add("hidden");
+
+    document.getElementById("joinPage")
+      .classList.add("hidden");
+
+    document.getElementById("roomPage")
+      .classList.add("hidden");
   }
 
 
-  /* =====================================
-     START GAME
-     ===================================== */
+  function goHome() {
+
+    hideAllPages();
+
+    document.getElementById("home")
+      .classList.remove("hidden");
+
+    if (realtimeChannel) {
+
+      supabaseClient
+        .removeChannel(realtimeChannel);
+
+      realtimeChannel = null;
+    }
+  }
+
 
   function startGame() {
 
-    showResult(
-      "🎮 بازی آماده است!<br><br>" +
-      "به‌زودی سیستم بازی آنلاین فعال می‌شود."
+    alert(
+      "🎮 سیستم بازی آماده می‌شود.\n\n" +
+      "اول یک روم بساز یا وارد روم دوستت شو."
     );
-
   }
 
 
-  /* =====================================
+  function showJoin() {
+
+    hideAllPages();
+
+    document.getElementById("joinPage")
+      .classList.remove("hidden");
+
+    document.getElementById("joinCode")
+      .focus();
+  }
+
+
+  function showError(elementId, message) {
+
+    document.getElementById(elementId).innerHTML =
+      `<div class="message">❌ ${message}</div>`;
+  }
+
+
+  /* ==========================================
      CREATE ROOM
-     ===================================== */
+     ========================================== */
 
   async function createRoom() {
-
-    showResult("⏳ در حال ساخت روم...");
 
     try {
 
       const code =
-        Math.floor(100000 + Math.random() * 900000)
-        .toString();
+        Math.floor(
+          100000 +
+          Math.random() * 900000
+        ).toString();
 
-      const { data, error } =
+
+      const { data: room, error } =
         await supabaseClient
           .from("rooms")
           .insert({
             code: code,
-            host_telegram_id: telegramId,
             status: "waiting"
           })
           .select()
           .single();
 
+
       if (error) {
+
         console.error(error);
 
-        showResult(
-          "❌ خطا در ساخت روم<br><br>" +
+        alert(
+          "❌ خطا در ساخت روم:\n\n" +
           error.message
         );
 
         return;
       }
 
-      await supabaseClient
-        .from("room_players")
-        .insert({
-          telegram_id: telegramId,
-          username: username,
-          seat: 1,
-          ready: true
-        });
 
-      showResult(
-        "🎉 روم ساخته شد!<br><br>" +
-        "<b style='font-size:32px'>" +
-        code +
-        "</b><br><br>" +
-        "این کد را به دوستت بده."
-      );
+      currentRoom = code;
+      currentRoomId = room.id;
+
+
+      /*
+        جدول room_players ما از قبل
+        با room_id ساخته شده.
+      */
+
+      const { error: playerError } =
+        await supabaseClient
+          .from("room_players")
+          .insert({
+            room_id: room.id,
+            telegram_id: telegramId,
+            username: username,
+            seat: 1,
+            ready: true
+          });
+
+
+      if (playerError) {
+
+        console.error(playerError);
+
+        alert(
+          "❌ روم ساخته شد اما بازیکن اضافه نشد:\n\n" +
+          playerError.message
+        );
+
+        return;
+      }
+
+
+      showRoom();
+
+      await loadPlayers();
+
+      listenToRoom();
+
 
     } catch (error) {
 
       console.error(error);
 
-      showResult(
-        "❌ خطای اتصال به سرور"
+      alert(
+        "❌ خطا در اتصال به سرور:\n\n" +
+        error.message
       );
-
     }
-
   }
 
 
-  /* =====================================
-     SHOW JOIN
-     ===================================== */
+  /* ==========================================
+     SHOW ROOM
+     ========================================== */
 
-  function showJoinRoom() {
+  function showRoom() {
 
-    document.getElementById("roomBox").style.display =
-      "block";
+    hideAllPages();
 
-    document.getElementById("roomCode").focus();
+    document.getElementById("roomPage")
+      .classList.remove("hidden");
 
+    document.getElementById("roomCode")
+      .textContent = currentRoom;
   }
 
 
-  /* =====================================
+  /* ==========================================
      JOIN ROOM
-     ===================================== */
+     ========================================== */
 
   async function joinRoom() {
 
+    const input =
+      document.getElementById("joinCode");
+
     const code =
-      document.getElementById("roomCode")
-      .value
-      .trim();
+      input.value.trim();
 
-    if (!code) {
 
-      showResult("⚠️ کد روم را وارد کن.");
+    if (!/^\d{6}$/.test(code)) {
+
+      showError(
+        "joinMessage",
+        "کد روم باید ۶ رقمی باشد."
+      );
 
       return;
     }
-
-
-    showResult("⏳ در حال پیدا کردن روم...");
 
 
     try {
@@ -394,8 +598,8 @@
 
         console.error(error);
 
-        showResult(
-          "❌ خطا در اتصال:<br>" +
+        showError(
+          "joinMessage",
           error.message
         );
 
@@ -405,70 +609,307 @@
 
       if (!room) {
 
-        showResult(
-          "❌ این روم پیدا نشد."
+        showError(
+          "joinMessage",
+          "این روم وجود ندارد."
         );
 
         return;
       }
 
 
-      const { count } =
+      const { data: players, error: playersError } =
         await supabaseClient
           .from("room_players")
-          .select("*", {
-            count: "exact",
-            head: true
-          });
+          .select("*")
+          .eq("room_id", room.id);
 
 
-      const seat =
-        (count || 0) + 1;
+      if (playersError) {
 
-
-      const { error: playerError } =
-        await supabaseClient
-          .from("room_players")
-          .insert({
-            telegram_id: telegramId,
-            username: username,
-            seat: seat,
-            ready: true
-          });
-
-
-      if (playerError) {
-
-        showResult(
-          "❌ خطا در ورود بازیکن:<br>" +
-          playerError.message
+        showError(
+          "joinMessage",
+          playersError.message
         );
 
         return;
       }
 
 
-      showResult(
-        "✅ با موفقیت وارد روم شدی!<br><br>" +
-        "کد روم: <b>" +
-        code +
-        "</b>"
-      );
+      if (players.length >= 4) {
+
+        showError(
+          "joinMessage",
+          "این روم پر است."
+        );
+
+        return;
+      }
+
+
+      /*
+        اگر بازیکن قبلاً داخل روم است،
+        دوباره اضافه‌اش نمی‌کنیم.
+      */
+
+      const alreadyJoined =
+        players.some(
+          p =>
+            String(p.telegram_id) ===
+            String(telegramId)
+        );
+
+
+      if (!alreadyJoined) {
+
+        const usedSeats =
+          players.map(p => p.seat);
+
+        let seat = 1;
+
+        while (usedSeats.includes(seat)) {
+          seat++;
+        }
+
+
+        const { error: insertError } =
+          await supabaseClient
+            .from("room_players")
+            .insert({
+              room_id: room.id,
+              telegram_id: telegramId,
+              username: username,
+              seat: seat,
+              ready: false
+            });
+
+
+        if (insertError) {
+
+          showError(
+            "joinMessage",
+            insertError.message
+          );
+
+          return;
+        }
+      }
+
+
+      currentRoom = code;
+      currentRoomId = room.id;
+
+
+      showRoom();
+
+      await loadPlayers();
+
+      listenToRoom();
 
 
     } catch (error) {
 
       console.error(error);
 
-      showResult(
-        "❌ اتصال به سرور برقرار نشد."
+      showError(
+        "joinMessage",
+        "اتصال به سرور برقرار نشد."
       );
+    }
+  }
 
+
+  /* ==========================================
+     LOAD PLAYERS
+     ========================================== */
+
+  async function loadPlayers() {
+
+    if (!currentRoomId) return;
+
+
+    const { data, error } =
+      await supabaseClient
+        .from("room_players")
+        .select("*")
+        .eq("room_id", currentRoomId)
+        .order("seat");
+
+
+    if (error) {
+
+      console.error(error);
+
+      document.getElementById("playersList")
+        .innerHTML =
+        "❌ خطا در دریافت بازیکنان";
+
+      return;
     }
 
+
+    let html = "";
+
+
+    for (let seat = 1; seat <= 4; seat++) {
+
+      const player =
+        data.find(p => p.seat === seat);
+
+
+      if (player) {
+
+        const ready =
+          player.ready
+            ? "🟢 آماده"
+            : "🟡 منتظر";
+
+
+        html += `
+          <div class="player-slot">
+            👤 ${escapeHtml(player.username || "Player")}
+            <span style="float:left">
+              ${ready}
+            </span>
+          </div>
+        `;
+
+      } else {
+
+        html += `
+          <div class="player-slot">
+            ⭕ جایگاه ${seat}
+            <span style="float:left;color:#777">
+              خالی
+            </span>
+          </div>
+        `;
+      }
+    }
+
+
+    document.getElementById("playersList")
+      .innerHTML = html;
+  }
+
+
+  /* ==========================================
+     REALTIME
+     ========================================== */
+
+  function listenToRoom() {
+
+    if (!currentRoomId) return;
+
+
+    if (realtimeChannel) {
+
+      supabaseClient
+        .removeChannel(realtimeChannel);
+    }
+
+
+    realtimeChannel =
+      supabaseClient
+        .channel(
+          "room-" + currentRoomId
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "room_players",
+            filter:
+              "room_id=eq." +
+              currentRoomId
+          },
+          function () {
+
+            loadPlayers();
+
+          }
+        )
+        .subscribe();
+  }
+
+
+  /* ==========================================
+     COPY ROOM
+     ========================================== */
+
+  async function copyRoomCode() {
+
+    try {
+
+      await navigator.clipboard
+        .writeText(currentRoom);
+
+      alert(
+        "✅ کد روم کپی شد:\n" +
+        currentRoom
+      );
+
+    } catch {
+
+      alert(
+        "کد روم:\n" +
+        currentRoom
+      );
+    }
+  }
+
+
+  /* ==========================================
+     SHARE ROOM
+     ========================================== */
+
+  function shareRoom() {
+
+    const text =
+      "🎮 بیا با من حکم بازی کن!\n\n" +
+      "🃏 کد روم: " +
+      currentRoom;
+
+
+    const url =
+      "https://t.me/share/url?url=" +
+      encodeURIComponent(
+        "https://aliabbaszadeh0923-creator.github.io/Hokm_mini_app/"
+      ) +
+      "&text=" +
+      encodeURIComponent(text);
+
+
+    if (tg.openTelegramLink) {
+
+      tg.openTelegramLink(url);
+
+    } else {
+
+      window.open(
+        url,
+        "_blank"
+      );
+    }
+  }
+
+
+  /* ==========================================
+     HTML SECURITY
+     ========================================== */
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   }
 
 </script>
 
 </body>
-</html>
+    </html>
