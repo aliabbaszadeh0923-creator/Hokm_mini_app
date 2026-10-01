@@ -267,31 +267,194 @@
     </div>
 
   </div>
+<script>
+const tg = window.Telegram.WebApp;
 
-  <script>
-    const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
 
-    tg.ready();
-    tg.expand();
+if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+  const user = tg.initDataUnsafe.user;
 
-    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-      const user = tg.initDataUnsafe.user;
+  document.getElementById("username").textContent =
+    user.first_name || "Player";
+}
 
-      document.getElementById("username").textContent =
-        user.first_name || "Player";
-    }
+function startGame() {
+  document.querySelector(".main-card").innerHTML = `
+    <div style="text-align:center;padding:20px 5px">
 
-    function startGame() {
-      tg.showAlert("سیستم بازی به‌زودی فعال می‌شود 🎮");
-    }
+      <div style="
+        width:80px;
+        height:80px;
+        margin:0 auto 20px;
+        border-radius:22px;
+        background:linear-gradient(135deg,#ff42d4,#8b2cff);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:40px;
+      ">🎮</div>
 
-    function createRoom() {
-      tg.showAlert("ساخت روم به‌زودی فعال می‌شود 👥");
-    }
+      <h2 style="margin-bottom:10px">بازی آنلاین</h2>
 
-    function joinRoom() {
-      tg.showAlert("ورود به روم به‌زودی فعال می‌شود 🔗");
-    }
+      <p style="color:#aaa;margin-bottom:25px">
+        یک گزینه را انتخاب کن
+      </p>
+
+      <div class="buttons">
+
+        <button class="play" onclick="createRoom()">
+          👥 ساخت روم
+        </button>
+
+        <button class="secondary" onclick="joinRoom()">
+          🔗 ورود به روم
+        </button>
+
+        <button class="secondary" onclick="location.reload()">
+          ↩️ برگشت
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+function createRoom() {
+
+  const roomCode =
+    Math.random().toString(36).substring(2, 8).toUpperCase();
+
+  document.querySelector(".main-card").innerHTML = `
+    <div style="text-align:center;padding:20px 5px">
+
+      <div style="font-size:55px;margin-bottom:15px">
+        🃏
+      </div>
+
+      <h2>روم ساخته شد</h2>
+
+      <p style="color:#aaa;margin:12px 0 20px">
+        کد روم را برای دوستانت بفرست
+      </p>
+
+      <div style="
+        font-size:32px;
+        font-weight:bold;
+        letter-spacing:8px;
+        background:rgba(255,255,255,.08);
+        padding:18px;
+        border-radius:18px;
+        margin-bottom:20px;
+      ">
+        ${roomCode}
+      </div>
+
+      <div class="buttons">
+
+        <button class="play" onclick="copyRoom('${roomCode}')">
+          📋 کپی کد روم
+        </button>
+
+        <button class="secondary" onclick="shareRoom('${roomCode}')">
+          📤 دعوت دوستان
+        </button>
+
+        <button class="secondary" onclick="location.reload()">
+          ↩️ برگشت
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+function joinRoom() {
+
+  const code = prompt("کد روم را وارد کن:");
+
+  if (!code) return;
+
+  const cleanCode = code.trim().toUpperCase();
+
+  if (cleanCode.length < 4) {
+    alert("کد روم معتبر نیست");
+    return;
+  }
+
+  document.querySelector(".main-card").innerHTML = `
+    <div style="text-align:center;padding:20px 5px">
+
+      <div style="font-size:55px;margin-bottom:15px">
+        🔗
+      </div>
+
+      <h2>در حال ورود...</h2>
+
+      <p style="color:#aaa">
+        روم ${cleanCode}
+      </p>
+
+      <div style="
+        margin-top:25px;
+        padding:15px;
+        background:rgba(255,255,255,.06);
+        border-radius:15px;
+      ">
+        اتصال به سرور بازی به‌زودی فعال می‌شود.
+      </div>
+
+      <button
+        class="secondary"
+        style="width:100%;margin-top:15px"
+        onclick="location.reload()"
+      >
+        ↩️ برگشت
+      </button>
+
+    </div>
+  `;
+}
+
+function copyRoom(code) {
+
+  navigator.clipboard.writeText(code);
+
+  if (tg.showAlert) {
+    tg.showAlert("کد روم کپی شد: " + code);
+  } else {
+    alert("کد روم کپی شد: " + code);
+  }
+}
+
+function shareRoom(code) {
+
+  const text =
+    "🎮 بیا با من حکم بازی کن!\n\nکد روم: " + code;
+
+  if (tg.openTelegramLink) {
+
+    const url =
+      "https://t.me/share/url?url=" +
+      encodeURIComponent(
+        "https://aliabbaszadeh0923-creator.github.io/Hokm_mini_app/"
+      ) +
+      "&text=" +
+      encodeURIComponent(text);
+
+    tg.openTelegramLink(url);
+
+  } else {
+
+    navigator.clipboard.writeText(text);
+
+    alert("متن دعوت کپی شد");
+
+  }
+}
   </script>
 
 </body>
