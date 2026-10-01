@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOKM</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #3b1747 0%, #160d20 42%, #09070d 100%);
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .app {
+      max-width: 520px;
+      min-height: 100vh;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 35px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff4fd8, #8b2cff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 0 25px rgba(255, 70, 220, .35);
+    }
+
+    .name {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .status {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    .coins {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 9px 14px;
+      color: #ffd84d;
+      font-weight: bold;
+    }
+
+    .logo {
+      text-align: center;
+      margin: 15px 0 35px;
+    }
+
+    .logo h1 {
+      font-size: 46px;
+      letter-spacing: 7px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #ff4fd8, #c56cff, #ff4fd8);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(255, 60, 220, .3);
+    }
+
+    .logo p {
+      color: #aaa;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .main-card {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 28px;
+      padding: 25px 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      backdrop-filter: blur(15px);
+    }
+
+    .card-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 18px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #ff4fd8, #752cff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      box-shadow: 0 0 40px rgba(255, 50, 220, .25);
+    }
+
+    .main-card h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .main-card p {
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: grid;
+      gap: 12px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 17px;
+      padding: 17px;
+      transition: .2s;
+    }
+
+    button:active {
+      transform: scale(.97);
+    }
+
+    .play {
+      background: linear-gradient(135deg, #ff42d4, #8b2cff);
+      box-shadow: 0 10px 30px rgba(220, 40, 210, .3);
+    }
+
+    .secondary {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      text-align: center;
+      background: rgba(255,255,255,.045);
+      border-radius: 16px;
+      padding: 15px 5px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .stat span {
+      display: block;
+      color: #888;
+      font-size: 11px;
+      margin-top: 5px;
+    }
+
+    .bottom {
+      text-align: center;
+      color: #666;
+      font-size: 11px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <div class="top">
+      <div class="profile">
+        <div class="avatar">♠</div>
+        <div>
+          <div class="name" id="username">Player</div>
+          <div class="status">آماده بازی</div>
+        </div>
+      </div>
+
+      <div class="coins">🪙 0</div>
+    </div>
+
+    <div class="logo">
+      <h1>HOKM</h1>
+      <p>Ultimate Card Game</p>
+    </div>
+
+    <div class="main-card">
+
+      <div class="card-icon">🃏</div>
+
+      <h2>آماده‌ای؟</h2>
+
+      <p>
+        وارد بازی حکم شو و با بازیکنان واقعی رقابت کن
+      </p>
+
+      <div class="buttons">
+
+        <button class="play" onclick="startGame()">
+          🎮 شروع بازی
+        </button>
+
+        <button class="secondary" onclick="createRoom()">
+          👥 ساخت روم
+        </button>
+
+        <button class="secondary" onclick="joinRoom()">
+          🔗 ورود به روم
+        </button>
+
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>0</strong>
+          <span>بازی</span>
+        </div>
+
+        <div class="stat">
+          <strong>0</strong>
+          <span>برد</span>
+        </div>
+
+        <div class="stat">
+          <strong>0%</strong>
+          <span>برد</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bottom">
+      HOKM • Telegram Mini App
+    </div>
+
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+
+    tg.ready();
+    tg.expand();
+
+    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+      const user = tg.initDataUnsafe.user;
+
+      document.getElementById("username").textContent =
+        user.first_name || "Player";
+    }
+
+    function startGame() {
+      tg.showAlert("سیستم بازی به‌زودی فعال می‌شود 🎮");
+    }
+
+    function createRoom() {
+      tg.showAlert("ساخت روم به‌زودی فعال می‌شود 👥");
+    }
+
+    function joinRoom() {
+      tg.showAlert("ورود به روم به‌زودی فعال می‌شود 🔗");
+    }
+  </script>
+
+</body>
+  </html>
