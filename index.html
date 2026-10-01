@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>HOKM</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -18,52 +19,46 @@
 body{
   min-height:100vh;
   background:
-    radial-gradient(circle at top,#42145c 0%,#180d22 45%,#09060d 100%);
+    radial-gradient(circle at top,#4a1264 0%,#180b23 45%,#08050c 100%);
   color:#fff;
   font-family:Arial,sans-serif;
-  overflow-x:hidden;
 }
 
 .app{
   width:100%;
   max-width:520px;
-  min-height:100vh;
   margin:auto;
-  padding:18px;
-}
-
-.hidden{
-  display:none!important;
+  padding:20px;
+  min-height:100vh;
 }
 
 .top{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:25px;
+  align-items:center;
+  margin-bottom:30px;
 }
 
 .coins{
   background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.12);
-  padding:9px 16px;
-  border-radius:25px;
+  padding:10px 16px;
+  border-radius:20px;
   color:#ffd83d;
-  font-size:18px;
   font-weight:bold;
 }
 
 .player{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:10px;
 }
 
 .avatar{
-  width:48px;
-  height:48px;
+  width:50px;
+  height:50px;
   border-radius:50%;
-  background:linear-gradient(135deg,#ff22d6,#8b2cff);
+  background:linear-gradient(135deg,#ff20d0,#792cff);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -71,14 +66,13 @@ body{
 }
 
 .player-name{
-  font-size:16px;
   font-weight:bold;
 }
 
 .online{
   color:#999;
   font-size:12px;
-  margin-top:3px;
+  margin-top:4px;
 }
 
 .logo{
@@ -87,10 +81,10 @@ body{
 }
 
 .logo h1{
-  font-size:50px;
-  letter-spacing:7px;
-  color:#e04cff;
-  text-shadow:0 0 25px rgba(224,76,255,.45);
+  font-size:52px;
+  letter-spacing:8px;
+  color:#e24cff;
+  text-shadow:0 0 25px rgba(226,76,255,.5);
 }
 
 .logo p{
@@ -102,10 +96,13 @@ body{
   background:rgba(255,255,255,.07);
   border:1px solid rgba(255,255,255,.12);
   border-radius:28px;
-  padding:22px;
+  padding:25px;
   box-shadow:0 20px 60px rgba(0,0,0,.35);
   backdrop-filter:blur(15px);
-  margin-bottom:15px;
+}
+
+.hidden{
+  display:none!important;
 }
 
 .card-icon{
@@ -113,18 +110,16 @@ body{
   height:105px;
   margin:0 auto 20px;
   border-radius:28px;
-  background:linear-gradient(135deg,#ff22d6,#762cff);
+  background:linear-gradient(135deg,#ff20d0,#792cff);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:55px;
-  box-shadow:0 0 30px rgba(230,40,255,.3);
 }
 
 h2{
   text-align:center;
-  margin-bottom:10px;
-  font-size:24px;
+  margin-bottom:12px;
 }
 
 .description{
@@ -139,9 +134,9 @@ button{
   border:0;
   border-radius:20px;
   padding:16px;
-  margin-top:10px;
-  color:#fff;
-  font-size:16px;
+  margin-top:12px;
+  color:white;
+  font-size:17px;
   font-weight:bold;
   cursor:pointer;
 }
@@ -151,23 +146,17 @@ button:active{
 }
 
 .primary{
-  background:linear-gradient(135deg,#ff20c9,#812bff);
-  box-shadow:0 8px 25px rgba(230,30,220,.25);
+  background:linear-gradient(135deg,#ff20ca,#7c2cff);
 }
 
 .secondary{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
 }
 
 .danger{
-  background:rgba(255,60,90,.13);
-  border:1px solid rgba(255,60,90,.2);
-}
-
-.selected{
-  outline:2px solid #e83bff;
-  background:rgba(232,59,255,.18);
+  background:rgba(255,50,80,.12);
+  border:1px solid rgba(255,50,80,.25);
 }
 
 .mode-buttons{
@@ -179,12 +168,17 @@ button:active{
   margin-top:0;
 }
 
+.selected{
+  outline:2px solid #e83cff;
+  background:rgba(232,60,255,.2);
+}
+
 input{
   width:100%;
-  padding:16px;
+  padding:17px;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(0,0,0,.3);
   color:white;
   font-size:18px;
   text-align:center;
@@ -196,11 +190,11 @@ input::placeholder{
 }
 
 .status{
-  min-height:24px;
+  min-height:25px;
   text-align:center;
-  margin:14px 0;
-  color:#ffcc55;
-  line-height:1.6;
+  margin:15px 0;
+  color:#ffd45a;
+  line-height:1.7;
 }
 
 .success{
@@ -208,335 +202,30 @@ input::placeholder{
 }
 
 .error{
-  color:#ff6b7d;
+  color:#ff6678;
 }
 
 .room-code{
-  font-size:38px;
+  text-align:center;
+  direction:ltr;
+  font-size:40px;
   font-weight:bold;
   letter-spacing:7px;
   color:#ff50e6;
-  text-align:center;
-  direction:ltr;
-  margin:18px 0;
+  margin:20px 0;
 }
 
 .players-count{
   text-align:center;
   color:#ccc;
-  margin-bottom:12px;
-}
-
-.stats{
-  display:flex;
-  gap:8px;
-  margin-top:20px;
-}
-
-.stat{
-  flex:1;
-  background:rgba(0,0,0,.2);
-  border-radius:17px;
-  padding:13px 5px;
-  text-align:center;
-}
-
-.stat strong{
-  display:block;
-  font-size:22px;
-}
-
-.stat span{
-  color:#999;
-  font-size:12px;
-}
-
-/* GAME */
-
-.game-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
-}
-
-.game-title{
-  font-size:20px;
-  font-weight:bold;
-}
-
-.game-round{
-  color:#aaa;
-  font-size:12px;
-}
-
-.score-board{
-  display:flex;
-  gap:8px;
-  margin-bottom:12px;
-}
-
-.score{
-  flex:1;
-  background:rgba(255,255,255,.07);
-  border-radius:16px;
-  padding:10px;
-  text-align:center;
-}
-
-.score span{
-  display:block;
-  color:#aaa;
-  font-size:11px;
-}
-
-.score strong{
-  font-size:25px;
-}
-
-.trump-box{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:18px;
-  padding:12px;
-  text-align:center;
-  margin-bottom:12px;
-}
-
-.trump-label{
-  color:#999;
-  font-size:12px;
-}
-
-.trump-value{
-  font-size:27px;
-  margin-top:4px;
-}
-
-.players-board{
-  display:flex;
-  gap:6px;
-  margin-bottom:12px;
-}
-
-.player-seat{
-  flex:1;
-  min-width:0;
-  padding:8px 4px;
-  background:rgba(0,0,0,.2);
-  border-radius:13px;
-  text-align:center;
-  border:1px solid transparent;
-}
-
-.player-seat.active{
-  border-color:#ff35dc;
-  box-shadow:0 0 15px rgba(255,35,220,.2);
-}
-
-.seat-name{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  font-size:11px;
-}
-
-.seat-num{
-  color:#999;
-  font-size:10px;
-  margin-top:3px;
-}
-
-.table{
-  min-height:220px;
-  border-radius:30px;
-  background:
-    radial-gradient(circle,#421b4e,#211329);
-  border:1px solid rgba(255,255,255,.1);
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   margin-bottom:15px;
-  overflow:hidden;
-}
-
-.table-center{
-  text-align:center;
-  color:#777;
-  font-size:12px;
-}
-
-.played-cards{
-  position:absolute;
-  inset:0;
-}
-
-.played-card{
-  position:absolute;
-  width:66px;
-  height:91px;
-  background:#fff;
-  color:#111;
-  border-radius:10px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  padding:7px;
-  font-weight:bold;
-  box-shadow:0 8px 18px rgba(0,0,0,.35);
-}
-
-.played-card.red{
-  color:#d51f48;
-}
-
-.played-card .pc-top{
-  font-size:16px;
-}
-
-.played-card .pc-center{
-  text-align:center;
-  font-size:27px;
-}
-
-.played-card .pc-name{
-  font-size:8px;
-  text-align:center;
-  color:#777;
-}
-
-.pc1{top:8px;left:50%;transform:translateX(-50%);}
-.pc2{right:8px;top:50%;transform:translateY(-50%);}
-.pc3{bottom:8px;left:50%;transform:translateX(-50%);}
-.pc4{left:8px;top:50%;transform:translateY(-50%);}
-
-.my-hand-title{
-  display:flex;
-  justify-content:space-between;
-  color:#aaa;
-  font-size:12px;
-  margin:8px 4px;
-}
-
-.hand{
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
-  min-height:115px;
-  padding:4px 0;
-}
-
-.hand-card{
-  width:58px;
-  height:84px;
-  background:#fff;
-  color:#111;
-  border-radius:10px;
-  margin-right:-8px;
-  border:2px solid rgba(255,255,255,.9);
-  box-shadow:0 7px 16px rgba(0,0,0,.4);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  padding:6px;
-  cursor:pointer;
-  position:relative;
-  transition:.15s;
-}
-
-.hand-card:first-child{
-  margin-right:0;
-}
-
-.hand-card:hover{
-  transform:translateY(-8px);
-}
-
-.hand-card.red{
-  color:#d51f48;
-}
-
-.hand-card.disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
-.hand-card .rank{
-  font-size:15px;
-  font-weight:bold;
-}
-
-.hand-card .suit{
-  font-size:25px;
-  text-align:center;
-}
-
-.hand-card .mini{
-  font-size:9px;
-  text-align:center;
-}
-
-.trump-options{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-top:12px;
-}
-
-.trump-btn{
-  margin:0;
-  padding:13px 5px;
-  font-size:25px;
-  background:rgba(255,255,255,.08);
-}
-
-.red-suit{
-  color:#ff5577;
-}
-
-.waiting-start{
-  text-align:center;
-  color:#bbb;
-  line-height:1.8;
-  margin:12px 0;
-}
-
-.loader{
-  display:inline-block;
-  width:18px;
-  height:18px;
-  border:3px solid rgba(255,255,255,.2);
-  border-top-color:#fff;
-  border-radius:50%;
-  animation:spin .8s linear infinite;
-  vertical-align:middle;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg);}
 }
 
 .bottom{
   text-align:center;
   color:#666;
-  margin:20px 0;
   font-size:12px;
-}
-
-.toast{
-  position:fixed;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#211329;
-  border:1px solid rgba(255,255,255,.12);
-  padding:12px 18px;
-  border-radius:18px;
-  z-index:999;
-  max-width:90%;
-  text-align:center;
-  box-shadow:0 10px 35px rgba(0,0,0,.5);
+  margin-top:25px;
 }
 </style>
 </head>
@@ -545,393 +234,293 @@ input::placeholder{
 
 <div class="app">
 
-  <!-- TOP -->
-  <div class="top">
-    <div class="coins">0 🪙</div>
+<div class="top">
 
-    <div class="player">
-      <div>
-        <div class="player-name" id="username">Player</div>
-        <div class="online">آماده بازی</div>
-      </div>
-      <div class="avatar">♠</div>
-    </div>
+  <div class="coins">
+    0 🪙
   </div>
 
-  <!-- HOME -->
-  <div id="home">
+  <div class="player">
 
-    <div class="logo">
-      <h1>HOKM</h1>
-      <p>Ultimate Card Game</p>
-    </div>
-
-    <div class="card">
-
-      <div class="card-icon">🃏</div>
-
-      <h2>آماده‌ای؟</h2>
-
-      <p class="description">
-        وارد بازی حکم شو و با بازیکنان واقعی رقابت کن
-      </p>
-
-      <button class="primary" onclick="showModes()">
-        🎮 شروع بازی
-      </button>
-
-      <button class="secondary" onclick="showCreate()">
-        👥 ساخت روم
-      </button>
-
-      <button class="secondary" onclick="showJoin()">
-        🔗 ورود به روم
-      </button>
-
-      <div class="stats">
-        <div class="stat">
-          <strong>0%</strong>
-          <span>برد</span>
-        </div>
-
-        <div class="stat">
-          <strong>0</strong>
-          <span>برد</span>
-        </div>
-
-        <div class="stat">
-          <strong>0</strong>
-          <span>بازی</span>
-        </div>
+    <div>
+      <div class="player-name" id="username">
+        Player
       </div>
 
-    </div>
-
-  </div>
-
-
-  <!-- MODES -->
-  <div class="card hidden" id="modes">
-
-    <h2>نوع بازی</h2>
-
-    <p class="description">
-      تعداد بازیکنان را انتخاب کن
-    </p>
-
-    <div class="mode-buttons">
-
-      <button
-        id="mode2"
-        class="secondary"
-        onclick="selectMode(2)">
-        👥 ۲ نفره
-      </button>
-
-      <button
-        id="mode4"
-        class="secondary selected"
-        onclick="selectMode(4)">
-        👥 ۴ نفره
-      </button>
-
-    </div>
-
-    <button class="primary" onclick="showCreate()">
-      🚀 ساخت روم
-    </button>
-
-    <button class="secondary" onclick="showJoin()">
-      🔗 ورود به روم
-    </button>
-
-    <button class="secondary" onclick="goHome()">
-      برگشت
-    </button>
-
-  </div>
-
-
-  <!-- CREATE -->
-  <div class="card hidden" id="create">
-
-    <h2>ساخت روم</h2>
-
-    <p class="description">
-      ظرفیت روم را انتخاب کن
-    </p>
-
-    <div class="mode-buttons">
-
-      <button
-        id="create2"
-        class="secondary"
-        onclick="setCreateMode(2)">
-        ۲ نفره
-      </button>
-
-      <button
-        id="create4"
-        class="secondary selected"
-        onclick="setCreateMode(4)">
-        ۴ نفره
-      </button>
-
-    </div>
-
-    <div id="createStatus" class="status"></div>
-
-    <button class="primary" onclick="createRoom()">
-      🎮 ساخت روم
-    </button>
-
-    <button class="secondary" onclick="showModes()">
-      برگشت
-    </button>
-
-  </div>
-
-
-  <!-- JOIN -->
-  <div class="card hidden" id="join">
-
-    <h2>ورود به روم</h2>
-
-    <p class="description">
-      کد روم را وارد کن
-    </p>
-
-    <input
-      id="roomCode"
-      maxlength="6"
-      placeholder="مثلاً A7K29P"
-      autocomplete="off">
-
-    <div id="joinStatus" class="status"></div>
-
-    <button class="primary" onclick="joinRoom()">
-      🔗 ورود به روم
-    </button>
-
-    <button class="secondary" onclick="showModes()">
-      برگشت
-    </button>
-
-  </div>
-
-
-  <!-- ROOM -->
-  <div class="card hidden" id="room">
-
-    <h2>روم شما 🎮</h2>
-
-    <p class="description">
-      کد را برای بازیکنان دیگر بفرست
-    </p>
-
-    <div class="room-code" id="roomCodeDisplay">
-      ------
-    </div>
-
-    <div class="players-count" id="playersCount">
-      1 / 4 بازیکن
-    </div>
-
-    <div id="roomStatus" class="status">
-      در انتظار بازیکنان...
-    </div>
-
-    <button
-      id="startGameButton"
-      class="primary hidden"
-      onclick="manualStartGame()">
-      🃏 شروع بازی
-    </button>
-
-    <button class="secondary" onclick="refreshRoom()">
-      🔄 بروزرسانی
-    </button>
-
-    <button class="danger" onclick="leaveRoom()">
-      خروج از روم
-    </button>
-
-  </div>
-
-
-  <!-- GAME -->
-  <div class="hidden" id="game">
-
-    <div class="game-header">
-      <div class="game-title">🃏 HOKM</div>
-      <div class="game-round" id="gameRound">
-        دست 1
+      <div class="online">
+        آماده بازی
       </div>
     </div>
 
-    <div class="score-board">
-      <div class="score">
-        <span>تیم ۱</span>
-        <strong id="team1Score">0</strong>
-      </div>
-
-      <div class="score">
-        <span>تیم ۲</span>
-        <strong id="team2Score">0</strong>
-      </div>
+    <div class="avatar">
+      ♠
     </div>
 
-    <div class="trump-box">
-      <div class="trump-label">حکم</div>
-      <div class="trump-value" id="trumpValue">
-        هنوز انتخاب نشده
-      </div>
-    </div>
-
-    <div class="players-board" id="playersBoard"></div>
-
-    <div class="card">
-
-      <div class="table">
-
-        <div class="table-center" id="tableMessage">
-          منتظر بازی...
-        </div>
-
-        <div
-          class="played-cards"
-          id="playedCards">
-        </div>
-
-      </div>
-
-      <div
-        id="trumpSelector"
-        class="hidden">
-
-        <h3 style="text-align:center">
-          👑 حکم را انتخاب کن
-        </h3>
-
-        <p
-          class="description"
-          style="margin:8px 0">
-          فقط حاکم می‌تواند حکم را انتخاب کند
-        </p>
-
-        <div class="trump-options">
-
-          <button
-            class="trump-btn"
-            onclick="chooseTrump('S')">
-            ♠
-          </button>
-
-          <button
-            class="trump-btn red-suit"
-            onclick="chooseTrump('H')">
-            ♥
-          </button>
-
-          <button
-            class="trump-btn red-suit"
-            onclick="chooseTrump('D')">
-            ♦
-          </button>
-
-          <button
-            class="trump-btn"
-            onclick="chooseTrump('C')">
-            ♣
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="my-hand-title">
-        <span>کارت‌های من</span>
-        <span id="turnText">در حال آماده‌سازی...</span>
-      </div>
-
-      <div
-        class="hand"
-        id="myHand">
-      </div>
-
-      <div
-        id="handEnd"
-        class="hidden">
-
-        <div
-          class="status success"
-          id="handEndText">
-        </div>
-
-        <button
-          id="nextHandButton"
-          class="primary"
-          onclick="startNextHand()">
-          🔄 دست بعدی
-        </button>
-
-      </div>
-
-    </div>
-
-    <button
-      class="danger"
-      onclick="leaveGame()">
-      خروج از بازی
-    </button>
-
-  </div>
-
-
-  <div class="bottom">
-    HOKM • Telegram Mini App
   </div>
 
 </div>
 
-<div id="toast" class="toast hidden"></div>
+
+<div class="logo">
+  <h1>HOKM</h1>
+  <p>Ultimate Card Game</p>
+</div>
+
+
+<!-- HOME -->
+
+<div class="card" id="home">
+
+  <div class="card-icon">
+    🃏
+  </div>
+
+  <h2>
+    آماده‌ای؟
+  </h2>
+
+  <p class="description">
+    وارد بازی حکم شو و با بازیکنان واقعی بازی کن
+  </p>
+
+  <button class="primary" onclick="showModes()">
+    🎮 شروع بازی
+  </button>
+
+  <button class="secondary" onclick="showCreate()">
+    👥 ساخت روم
+  </button>
+
+  <button class="secondary" onclick="showJoin()">
+    🔗 ورود به روم
+  </button>
+
+</div>
+
+
+<!-- MODES -->
+
+<div class="card hidden" id="modes">
+
+  <h2>
+    تعداد بازیکنان
+  </h2>
+
+  <p class="description">
+    نوع بازی را انتخاب کن
+  </p>
+
+  <div class="mode-buttons">
+
+    <button
+      id="mode2"
+      class="secondary"
+      onclick="selectMode(2)">
+      👥 ۲ نفره
+    </button>
+
+    <button
+      id="mode4"
+      class="secondary selected"
+      onclick="selectMode(4)">
+      👥 ۴ نفره
+    </button>
+
+  </div>
+
+  <button
+    class="primary"
+    onclick="showCreate()">
+    🚀 ساخت روم
+  </button>
+
+  <button
+    class="secondary"
+    onclick="showJoin()">
+    🔗 ورود به روم
+  </button>
+
+  <button
+    class="secondary"
+    onclick="goHome()">
+    ↩️ برگشت
+  </button>
+
+</div>
+
+
+<!-- CREATE -->
+
+<div class="card hidden" id="create">
+
+  <h2>
+    ساخت روم 🎮
+  </h2>
+
+  <p class="description">
+    ظرفیت روم را انتخاب کن
+  </p>
+
+  <div class="mode-buttons">
+
+    <button
+      id="create2"
+      class="secondary"
+      onclick="setCreateMode(2)">
+      ۲ نفره
+    </button>
+
+    <button
+      id="create4"
+      class="secondary selected"
+      onclick="setCreateMode(4)">
+      ۴ نفره
+    </button>
+
+  </div>
+
+  <div id="createStatus" class="status"></div>
+
+  <button
+    class="primary"
+    onclick="createRoom()">
+    🎮 ساخت روم
+  </button>
+
+  <button
+    class="secondary"
+    onclick="showModes()">
+    ↩️ برگشت
+  </button>
+
+</div>
+
+
+<!-- JOIN -->
+
+<div class="card hidden" id="join">
+
+  <h2>
+    ورود به روم 🔗
+  </h2>
+
+  <p class="description">
+    کد روم را وارد کن
+  </p>
+
+  <input
+    id="roomCode"
+    maxlength="6"
+    placeholder="مثلاً A7K29P"
+    autocomplete="off">
+
+  <div id="joinStatus" class="status"></div>
+
+  <button
+    class="primary"
+    onclick="joinRoom()">
+    🔗 ورود به روم
+  </button>
+
+  <button
+    class="secondary"
+    onclick="showModes()">
+    ↩️ برگشت
+  </button>
+
+</div>
+
+
+<!-- ROOM -->
+
+<div class="card hidden" id="room">
+
+  <h2>
+    روم شما 🎮
+  </h2>
+
+  <p class="description">
+    این کد را برای بازیکنان دیگر بفرست
+  </p>
+
+  <div
+    id="roomCodeDisplay"
+    class="room-code">
+    ------
+  </div>
+
+  <div
+    id="playersCount"
+    class="players-count">
+    1 / 4 بازیکن
+  </div>
+
+  <div
+    id="roomStatus"
+    class="status">
+    در انتظار بازیکنان...
+  </div>
+
+  <button
+    class="primary"
+    onclick="refreshRoom()">
+    🔄 بروزرسانی
+  </button>
+
+  <button
+    class="danger"
+    onclick="leaveRoom()">
+    خروج از روم
+  </button>
+
+</div>
+
+
+<div class="bottom">
+  HOKM • Telegram Mini App
+</div>
+
+</div>
 
 
 <script>
 
-/* =========================================================
+/* =========================
    SUPABASE
-========================================================= */
+========================= */
 
 const SUPABASE_URL =
-  "https://uhgikijqlirttwdykaah.supabase.co";
+"https://uhgikijqlirttwdykaah.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_jgq1e7NvxiANV8pEyTYKlA_ZobviYyi";
+"sb_publishable_jgq1e7NvxiANV8pEyTYKlA_ZobviYyi";
 
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
-/* =========================================================
+/* =========================
    TELEGRAM
-========================================================= */
+========================= */
 
 const tg =
-  window.Telegram?.WebApp;
+window.Telegram &&
+window.Telegram.WebApp;
 
 if(tg){
+
   tg.ready();
   tg.expand();
+
 }
 
 
-/* =========================================================
+/* =========================
    USER
-========================================================= */
+========================= */
 
 let telegramUser = null;
 
@@ -940,156 +529,74 @@ if(
   tg.initDataUnsafe &&
   tg.initDataUnsafe.user
 ){
+
   telegramUser =
     tg.initDataUnsafe.user;
+
 }else{
+
   telegramUser = {
-    id:"web_" + Date.now(),
+    id:"web_"+Date.now(),
     first_name:"Player",
     username:""
   };
+
 }
 
 const telegramId =
-  String(telegramUser.id);
+String(telegramUser.id);
 
 const displayName =
-  telegramUser.username
-    ? "@" + telegramUser.username
-    : (
-        telegramUser.first_name ||
-        "Player"
-      );
+telegramUser.username
+? "@"+telegramUser.username
+: (
+  telegramUser.first_name ||
+  "Player"
+);
 
-document.getElementById("username")
-  .textContent = displayName;
+document
+.getElementById("username")
+.textContent = displayName;
 
 
-/* =========================================================
-   GLOBAL STATE
-========================================================= */
+/* =========================
+   VARIABLES
+========================= */
 
 let selectedMode = 4;
 
 let currentRoom = null;
+
 let currentRoomPlayerId = null;
-let mySeat = null;
 
-let players = [];
-
-let gameState = null;
-
-let roomTimer = null;
-let gameTimer = null;
-
-let initializedGame = false;
+let refreshTimer = null;
 
 
-/* =========================================================
-   CARD DATA
-========================================================= */
-
-const SUITS = ["S","H","D","C"];
-
-const SUIT_SYMBOL = {
-  S:"♠",
-  H:"♥",
-  D:"♦",
-  C:"♣"
-};
-
-const SUIT_NAME = {
-  S:"پیک",
-  H:"دل",
-  D:"خشت",
-  C:"گشنیز"
-};
-
-const RANKS = [
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "J",
-  "Q",
-  "K",
-  "A"
-];
-
-const RANK_VALUE = {
-  "2":2,
-  "3":3,
-  "4":4,
-  "5":5,
-  "6":6,
-  "7":7,
-  "8":8,
-  "9":9,
-  "10":10,
-  "J":11,
-  "Q":12,
-  "K":13,
-  "A":14
-};
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function toast(message){
-
-  const el =
-    document.getElementById("toast");
-
-  el.textContent = message;
-
-  el.classList.remove("hidden");
-
-  clearTimeout(
-    window.__toastTimer
-  );
-
-  window.__toastTimer =
-    setTimeout(
-      () => el.classList.add("hidden"),
-      2500
-    );
-}
-
+/* =========================
+   PAGE FUNCTIONS
+========================= */
 
 function hideAll(){
 
   document
-    .querySelectorAll(
-      "#home,#modes,#create,#join,#room,#game"
-    )
-    .forEach(
-      el => el.classList.add("hidden")
-    );
+  .querySelectorAll(".card")
+  .forEach(function(card){
+
+    card.classList.add("hidden");
+
+  });
+
 }
 
 
 function goHome(){
 
-  stopTimers();
-
-  currentRoom = null;
-  currentRoomPlayerId = null;
-  mySeat = null;
-  gameState = null;
-  players = [];
-
   hideAll();
 
   document
-    .getElementById("home")
-    .classList.remove("hidden");
+  .getElementById("home")
+  .classList.remove("hidden");
+
 }
 
 
@@ -1098,8 +605,9 @@ function showModes(){
   hideAll();
 
   document
-    .getElementById("modes")
-    .classList.remove("hidden");
+  .getElementById("modes")
+  .classList.remove("hidden");
+
 }
 
 
@@ -1108,8 +616,9 @@ function showCreate(){
   hideAll();
 
   document
-    .getElementById("create")
-    .classList.remove("hidden");
+  .getElementById("create")
+  .classList.remove("hidden");
+
 }
 
 
@@ -1118,54 +627,34 @@ function showJoin(){
   hideAll();
 
   document
-    .getElementById("join")
-    .classList.remove("hidden");
+  .getElementById("join")
+  .classList.remove("hidden");
 
-  setTimeout(
-    () =>
-      document
-        .getElementById("roomCode")
-        .focus(),
-    100
-  );
 }
 
 
-function stopTimers(){
-
-  if(roomTimer){
-    clearInterval(roomTimer);
-    roomTimer = null;
-  }
-
-  if(gameTimer){
-    clearInterval(gameTimer);
-    gameTimer = null;
-  }
-}
-
-
-/* =========================================================
-   MODE
-========================================================= */
+/* =========================
+   GAME MODE
+========================= */
 
 function selectMode(mode){
 
   selectedMode = mode;
 
   document
-    .getElementById("mode2")
-    .classList.toggle(
-      "selected",
-      mode === 2
-    );
+  .getElementById("mode2")
+  .classList.toggle(
+    "selected",
+    mode === 2
+  );
 
   document
-    .getElementById("mode4")
-    .classList.toggle(
-      "selected",
-      mode === 4
-    );
+  .getElementById("mode4")
+  .classList.toggle(
+    "selected",
+    mode === 4
+  );
+
 }
 
 
@@ -1174,1349 +663,615 @@ function setCreateMode(mode){
   selectedMode = mode;
 
   document
-    .getElementById("create2")
-    .classList.toggle(
-      "selected",
-      mode === 2
-    );
+  .getElementById("create2")
+  .classList.toggle(
+    "selected",
+    mode === 2
+  );
 
   document
-    .getElementById("create4")
-    .classList.toggle(
-      "selected",
-      mode === 4
-    );
+  .getElementById("create4")
+  .classList.toggle(
+    "selected",
+    mode === 4
+  );
+
 }
 
 
-/* =========================================================
+/* =========================
    ROOM CODE
-========================================================= */
+========================= */
 
 function generateRoomCode(){
 
   const chars =
-    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
   let code = "";
 
   for(let i=0;i<6;i++){
 
     code +=
-      chars[
-        Math.floor(
-          Math.random() * chars.length
-        )
-      ];
+    chars[
+      Math.floor(
+        Math.random()*chars.length
+      )
+    ];
+
   }
 
   return code;
+
 }
 
 
-/* =========================================================
+/* =========================
    CREATE ROOM
-========================================================= */
+========================= */
 
 async function createRoom(){
 
   const status =
-    document.getElementById(
-      "createStatus"
-    );
+  document.getElementById(
+    "createStatus"
+  );
 
-  status.className = "status";
+  status.className =
+  "status";
 
-  status.innerHTML =
-    '<span class="loader"></span> در حال ساخت روم...';
+  status.textContent =
+  "در حال ساخت روم...";
 
   try{
 
     let code =
-      generateRoomCode();
+    generateRoomCode();
 
     let room = null;
 
-    for(let attempt=0;attempt<5;attempt++){
+    let roomError = null;
+
+
+    /*
+      چند بار امتحان می‌کنیم
+      تا کد تکراری باعث خطا نشود
+    */
+
+    for(let i=0;i<5;i++){
 
       const result =
-        await supabaseClient
-          .from("rooms")
-          .insert({
-            code:code,
-            status:"waiting",
-            max_players:selectedMode
-          })
-          .select()
-          .single();
+      await supabaseClient
+      .from("rooms")
+      .insert({
 
-      if(!result.error){
+        code:code,
 
-        room = result.data;
+        status:"waiting",
+
+        max_players:selectedMode
+
+      })
+      .select()
+      .single();
+
+      room =
+      result.data;
+
+      roomError =
+      result.error;
+
+      if(!roomError){
         break;
       }
 
       code =
-        generateRoomCode();
-    }
+      generateRoomCode();
 
-    if(!room){
-      throw new Error(
-        "ساخت روم انجام نشد."
-      );
     }
 
 
-    const {
-      data:player,
-      error:playerError
-    } =
+    if(roomError){
+      throw roomError;
+    }
+
+
+    /*
+      اضافه کردن سازنده
+    */
+
+    const playerResult =
+    await supabaseClient
+    .from("room_players")
+    .insert({
+
+      room_id:room.id,
+
+      telegram_id:telegramId,
+
+      username:displayName,
+
+      seat:1,
+
+      ready:false
+
+    })
+    .select()
+    .single();
+
+
+    if(playerResult.error){
+
       await supabaseClient
-        .from("room_players")
-        .insert({
-          room_id:room.id,
-          telegram_id:telegramId,
-          username:displayName,
-          seat:1,
-          ready:false
-        })
-        .select()
-        .single();
+      .from("rooms")
+      .delete()
+      .eq("id",room.id);
 
-    if(playerError){
+      throw playerResult.error;
 
-      await supabaseClient
-        .from("rooms")
-        .delete()
-        .eq("id",room.id);
-
-      throw playerError;
     }
 
-    currentRoom = room;
-    currentRoomPlayerId = player.id;
-    mySeat = 1;
 
-    openRoom();
+    currentRoom =
+    room;
 
-  }catch(error){
+    currentRoomPlayerId =
+    playerResult.data.id;
+
+
+    openRoom(room);
+
+  }
+  catch(error){
 
     console.error(error);
 
     status.className =
-      "status error";
+    "status error";
 
     status.textContent =
-      "خطا: " +
-      (error.message || "نامشخص");
+    "❌ خطا: "+
+    (error.message || "خطای نامشخص");
+
   }
+
 }
 
 
-/* =========================================================
+/* =========================
    JOIN ROOM
-========================================================= */
+========================= */
 
 async function joinRoom(){
 
   const input =
-    document.getElementById(
-      "roomCode"
-    );
+  document.getElementById(
+    "roomCode"
+  );
 
   const status =
-    document.getElementById(
-      "joinStatus"
-    );
+  document.getElementById(
+    "joinStatus"
+  );
 
   const code =
-    input.value
-      .trim()
-      .toUpperCase();
+  input.value
+  .trim()
+  .toUpperCase();
+
 
   if(code.length !== 6){
 
     status.className =
-      "status error";
+    "status error";
 
     status.textContent =
-      "کد باید ۶ کاراکتر باشد.";
+    "❌ کد باید ۶ کاراکتر باشد.";
 
     return;
+
   }
 
-  status.className =
-    "status";
 
-  status.innerHTML =
-    '<span class="loader"></span> در حال ورود...';
+  status.className =
+  "status";
+
+  status.textContent =
+  "در حال بررسی روم...";
+
 
   try{
 
-    const {
-      data:room,
-      error:roomError
-    } =
-      await supabaseClient
-        .from("rooms")
-        .select("*")
-        .eq("code",code)
-        .maybeSingle();
+    const roomResult =
+    await supabaseClient
+    .from("rooms")
+    .select("*")
+    .eq("code",code)
+    .maybeSingle();
 
-    if(roomError)
-      throw roomError;
+
+    if(roomResult.error){
+      throw roomResult.error;
+    }
+
+
+    const room =
+    roomResult.data;
+
 
     if(!room){
 
       status.className =
-        "status error";
+      "status error";
 
       status.textContent =
-        "❌ کد روم پیدا نشد.";
+      "❌ کد روم پیدا نشد.";
 
       return;
+
     }
 
 
-    const {
-      data:existing
-    } =
-      await supabaseClient
-        .from("room_players")
-        .select("*")
-        .eq("room_id",room.id)
-        .eq("telegram_id",telegramId)
-        .maybeSingle();
+    /*
+      بررسی بازیکن قبلی
+    */
+
+    const existing =
+    await supabaseClient
+    .from("room_players")
+    .select("*")
+    .eq("room_id",room.id)
+    .eq("telegram_id",telegramId)
+    .maybeSingle();
 
 
-    if(existing){
-
-      currentRoom = room;
-      currentRoomPlayerId = existing.id;
-      mySeat = existing.seat;
-
-      openRoom();
-
-      return;
+    if(existing.error){
+      throw existing.error;
     }
 
 
-    const {
-      data:roomPlayers,
-      error:playersError
-    } =
-      await supabaseClient
-        .from("room_players")
-        .select("id,seat")
-        .eq("room_id",room.id);
+    if(existing.data){
 
-    if(playersError)
-      throw playersError;
+      currentRoom =
+      room;
 
-    const count =
-      roomPlayers?.length || 0;
+      currentRoomPlayerId =
+      existing.data.id;
 
-    if(count >= room.max_players){
+      openRoom(room);
+
+      return;
+
+    }
+
+
+    /*
+      بازیکنان فعلی
+    */
+
+    const playersResult =
+    await supabaseClient
+    .from("room_players")
+    .select("id,seat")
+    .eq("room_id",room.id);
+
+
+    if(playersResult.error){
+      throw playersResult.error;
+    }
+
+
+    const players =
+    playersResult.data || [];
+
+
+    if(players.length >= room.max_players){
 
       status.className =
-        "status error";
+      "status error";
 
       status.textContent =
-        "❌ این روم پر است.";
+      "❌ این روم پر است.";
 
       return;
+
     }
 
 
+    /*
+      پیدا کردن صندلی خالی
+    */
+
     const usedSeats =
-      (roomPlayers || [])
-        .map(p => p.seat);
+    players.map(function(p){
+      return p.seat;
+    });
+
 
     let seat = 1;
 
-    while(
-      usedSeats.includes(seat)
-    ){
+    while(usedSeats.includes(seat)){
       seat++;
     }
 
 
-    const {
-      data:player,
-      error:insertError
-    } =
-      await supabaseClient
-        .from("room_players")
-        .insert({
-          room_id:room.id,
-          telegram_id:telegramId,
-          username:displayName,
-          seat:seat,
-          ready:false
-        })
-        .select()
-        .single();
+    /*
+      اضافه کردن بازیکن
+    */
 
-    if(insertError)
-      throw insertError;
+    const insertResult =
+    await supabaseClient
+    .from("room_players")
+    .insert({
+
+      room_id:room.id,
+
+      telegram_id:telegramId,
+
+      username:displayName,
+
+      seat:seat,
+
+      ready:false
+
+    })
+    .select()
+    .single();
 
 
-    if(count + 1 >= room.max_players){
-
-      await supabaseClient
-        .from("rooms")
-        .update({
-          status:"full"
-        })
-        .eq("id",room.id);
-
-      room.status = "full";
+    if(insertResult.error){
+      throw insertResult.error;
     }
 
 
-    currentRoom = room;
-    currentRoomPlayerId = player.id;
-    mySeat = seat;
+    if(players.length + 1 >= room.max_players){
 
-    openRoom();
+      await supabaseClient
+      .from("rooms")
+      .update({
+        status:"full"
+      })
+      .eq("id",room.id);
 
-  }catch(error){
+      room.status =
+      "full";
+
+    }
+
+
+    currentRoom =
+    room;
+
+    currentRoomPlayerId =
+    insertResult.data.id;
+
+
+    openRoom(room);
+
+  }
+  catch(error){
 
     console.error(error);
 
     status.className =
-      "status error";
+    "status error";
 
     status.textContent =
-      "خطا: " +
-      (error.message || "نامشخص");
+    "❌ خطا: "+
+    (error.message || "خطای نامشخص");
+
   }
+
 }
 
 
-/* =========================================================
+/* =========================
    OPEN ROOM
-========================================================= */
+========================= */
 
-async function openRoom(){
+function openRoom(room){
 
   hideAll();
 
   document
-    .getElementById("room")
-    .classList.remove("hidden");
+  .getElementById("room")
+  .classList.remove("hidden");
+
 
   document
-    .getElementById("roomCodeDisplay")
-    .textContent =
-      currentRoom.code;
+  .getElementById("roomCodeDisplay")
+  .textContent =
+  room.code;
 
-  await refreshRoom();
 
-  stopTimers();
+  refreshRoom();
 
-  roomTimer =
-    setInterval(
-      refreshRoom,
-      2000
-    );
+
+  if(refreshTimer){
+    clearInterval(refreshTimer);
+  }
+
+
+  refreshTimer =
+  setInterval(
+    refreshRoom,
+    3000
+  );
+
 }
 
 
-/* =========================================================
+/* =========================
    REFRESH ROOM
-========================================================= */
+========================= */
 
 async function refreshRoom(){
 
-  if(!currentRoom)
+  if(!currentRoom){
     return;
+  }
+
 
   try{
 
-    const {
-      data:room,
-      error:roomError
-    } =
-      await supabaseClient
-        .from("rooms")
-        .select("*")
-        .eq("id",currentRoom.id)
-        .single();
-
-    if(roomError)
-      throw roomError;
-
-    currentRoom = room;
+    const roomResult =
+    await supabaseClient
+    .from("rooms")
+    .select("*")
+    .eq("id",currentRoom.id)
+    .single();
 
 
-    const {
-      data:roomPlayers,
-      error:playersError
-    } =
-      await supabaseClient
-        .from("room_players")
-        .select(
-          "id,telegram_id,username,seat,ready"
-        )
-        .eq("room_id",room.id)
-        .order("seat");
-
-    if(playersError)
-      throw playersError;
-
-    players =
-      roomPlayers || [];
+    if(roomResult.error){
+      throw roomResult.error;
+    }
 
 
-    const count =
-      players.length;
+    currentRoom =
+    roomResult.data;
+
+
+    const playersResult =
+    await supabaseClient
+    .from("room_players")
+    .select(
+      "id,telegram_id,username,seat,ready"
+    )
+    .eq(
+      "room_id",
+      currentRoom.id
+    )
+    .order("seat");
+
+
+    if(playersResult.error){
+      throw playersResult.error;
+    }
+
+
+    const players =
+    playersResult.data || [];
+
 
     document
-      .getElementById("playersCount")
-      .textContent =
-        count +
-        " / " +
-        room.max_players +
-        " بازیکن";
+    .getElementById("playersCount")
+    .textContent =
+    players.length+
+    " / "+
+    currentRoom.max_players+
+    " بازیکن";
 
 
     const status =
-      document.getElementById(
-        "roomStatus"
-      );
-
-    const startButton =
-      document.getElementById(
-        "startGameButton"
-      );
-
-
-    if(count >= room.max_players){
-
-      status.className =
-        "status success";
-
-      status.textContent =
-        "🎉 روم کامل شد!";
-
-      startButton.classList.remove(
-        "hidden"
-      );
-
-      if(
-        mySeat === 1 &&
-        !initializedGame
-      ){
-        await ensureGameStarted();
-      }
-
-    }else{
-
-      status.className =
-        "status";
-
-      status.textContent =
-        "در انتظار " +
-        (room.max_players-count) +
-        " بازیکن دیگر...";
-
-      startButton.classList.add(
-        "hidden"
-      );
-    }
-
-  }catch(error){
-
-    console.error(
-      "Room refresh:",
-      error
-    );
-  }
-}
-
-
-/* =========================================================
-   MANUAL START
-========================================================= */
-
-async function manualStartGame(){
-
-  if(!currentRoom)
-    return;
-
-  await ensureGameStarted();
-}
-
-
-/* =========================================================
-   START GAME
-========================================================= */
-
-async function ensureGameStarted(){
-
-  if(!currentRoom)
-    return;
-
-  try{
-
-    const {
-      data:existing,
-      error:stateError
-    } =
-      await supabaseClient
-        .from("game_states")
-        .select("*")
-        .eq("room_id",currentRoom.id)
-        .order("id",{ascending:false})
-        .limit(1)
-        .maybeSingle();
-
-    if(stateError)
-      throw stateError;
-
-
-    if(existing){
-
-      gameState = existing;
-
-      initializedGame = true;
-
-      openGame();
-
-      return;
-    }
-
-
-    if(mySeat !== 1)
-      return;
-
-
-    /*
-     * ایجاد وضعیت اولیه بازی
-     */
-
-    const {
-      data:newState,
-      error:insertStateError
-    } =
-      await supabaseClient
-        .from("game_states")
-        .insert({
-          room_id:currentRoom.id,
-          phase:"trump",
-          dealer_seat:1,
-          turn_seat:1,
-          trump:null,
-          lead_suit:null,
-          team1_score:0,
-          team2_score:0,
-          hand_number:1,
-          trick_number:1
-        })
-        .select()
-        .single();
-
-    if(insertStateError){
-
-      /*
-       * ممکن است بازیکن دیگری همزمان بازی را ساخته باشد.
-       * دوباره می‌خوانیم.
-       */
-
-      const {
-        data:fallback
-      } =
-        await supabaseClient
-          .from("game_states")
-          .select("*")
-          .eq("room_id",currentRoom.id)
-          .order("id",{ascending:false})
-          .limit(1)
-          .maybeSingle();
-
-      if(fallback){
-
-        gameState = fallback;
-        initializedGame = true;
-        openGame();
-        return;
-      }
-
-      throw insertStateError;
-    }
-
-
-    gameState = newState;
-
-
-    /*
-     * پخش ۵ کارت اول
-     */
-
-    await dealInitialCards();
-
-
-    initializedGame = true;
-
-    openGame();
-
-  }catch(error){
-
-    console.error(
-      "Start game error:",
-      error
-    );
-
-    toast(
-      "خطا در شروع بازی: " +
-      (error.message || "")
-    );
-  }
-}
-
-
-/* =========================================================
-   DECK
-========================================================= */
-
-function createDeck(){
-
-  const deck = [];
-
-  for(const suit of SUITS){
-
-    for(const rank of RANKS){
-
-      deck.push(
-        rank + suit
-      );
-    }
-  }
-
-  return deck;
-}
-
-
-function shuffle(array){
-
-  const copy =
-    [...array];
-
-  for(
-    let i=copy.length-1;
-    i>0;
-    i--
-  ){
-
-    const j =
-      Math.floor(
-        Math.random()*(i+1)
-      );
-
-    [
-      copy[i],
-      copy[j]
-    ] =
-    [
-      copy[j],
-      copy[i]
-    ];
-  }
-
-  return copy;
-}
-
-
-/* =========================================================
-   INITIAL DEAL
-========================================================= */
-
-async function dealInitialCards(){
-
-  if(!currentRoom)
-    return;
-
-  const deck =
-    shuffle(createDeck());
-
-  const rows = [];
-
-  let index = 0;
-
-  for(const player of players){
-
-    for(let i=0;i<5;i++){
-
-      rows.push({
-        room_id:currentRoom.id,
-        telegram_id:String(
-          player.telegram_id
-        ),
-        card:deck[index],
-        played:false
-      });
-
-      index++;
-    }
-  }
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-      .from("game_cards")
-      .insert(rows);
-
-  if(error)
-    throw error;
-}
-
-
-/* =========================================================
-   OPEN GAME
-========================================================= */
-
-function openGame(){
-
-  stopTimers();
-
-  hideAll();
-
-  document
-    .getElementById("game")
-    .classList.remove("hidden");
-
-  renderGame();
-
-  gameTimer =
-    setInterval(
-      refreshGame,
-      1200
-    );
-}
-
-
-/* =========================================================
-   REFRESH GAME
-========================================================= */
-
-async function refreshGame(){
-
-  if(!currentRoom)
-    return;
-
-  try{
-
-    const {
-      data:state,
-      error:stateError
-    } =
-      await supabaseClient
-        .from("game_states")
-        .select("*")
-        .eq("room_id",currentRoom.id)
-        .order("id",{ascending:false})
-        .limit(1)
-        .maybeSingle();
-
-    if(stateError)
-      throw stateError;
-
-    if(!state)
-      return;
-
-    gameState = state;
-
-    await renderGame();
-
-  }catch(error){
-
-    console.error(
-      "Game refresh:",
-      error
-    );
-  }
-}
-
-
-/* =========================================================
-   RENDER GAME
-========================================================= */
-
-async function renderGame(){
-
-  if(!gameState)
-    return;
-
-  document
-    .getElementById("team1Score")
-    .textContent =
-      gameState.team1_score || 0;
-
-  document
-    .getElementById("team2Score")
-    .textContent =
-      gameState.team2_score || 0;
-
-  document
-    .getElementById("gameRound")
-    .textContent =
-      "دست " +
-      (gameState.hand_number || 1) +
-      " • تریک " +
-      (gameState.trick_number || 1);
-
-
-  renderTrump();
-
-  renderPlayers();
-
-  await renderTable();
-
-  await renderHand();
-
-  renderGameControls();
-}
-
-
-/* =========================================================
-   TRUMP
-========================================================= */
-
-function renderTrump(){
-
-  const el =
     document.getElementById(
-      "trumpValue"
+      "roomStatus"
     );
 
-  if(!gameState.trump){
-
-    el.textContent =
-      "هنوز انتخاب نشده";
-
-    return;
-  }
-
-  const symbol =
-    SUIT_SYMBOL[
-      gameState.trump
-    ];
-
-  el.innerHTML =
-    '<span class="' +
-    (
-      gameState.trump === "H" ||
-      gameState.trump === "D"
-        ? "red-suit"
-        : ""
-    ) +
-    '">' +
-    symbol +
-    " " +
-    SUIT_NAME[
-      gameState.trump
-    ] +
-    "</span>";
-}
-
-
-/* =========================================================
-   PLAYERS
-========================================================= */
-
-function renderPlayers(){
-
-  const board =
-    document.getElementById(
-      "playersBoard"
-    );
-
-  board.innerHTML = "";
-
-  for(const player of players){
-
-    const div =
-      document.createElement(
-        "div"
-      );
-
-    div.className =
-      "player-seat " +
-      (
-        gameState.turn_seat ===
-        player.seat
-          ? "active"
-          : ""
-      );
-
-    div.innerHTML =
-      '<div class="seat-name">' +
-      escapeHtml(
-        player.username ||
-        ("بازیکن " + player.seat)
-      ) +
-      "</div>" +
-      '<div class="seat-num">' +
-      "صندلی " +
-      player.seat +
-      "</div>";
-
-    board.appendChild(div);
-  }
-}
-
-
-/* =========================================================
-   TABLE
-========================================================= */
-
-async function renderTable(){
-
-  const {
-    data:playedCards,
-    error
-  } =
-    await supabaseClient
-      .from("game_cards")
-      .select(
-        "id,telegram_id,card,played"
-      )
-      .eq("room_id",currentRoom.id)
-      .eq("played",true);
-
-  if(error){
-    console.error(error);
-    return;
-  }
-
-  const container =
-    document.getElementById(
-      "playedCards"
-    );
-
-  const message =
-    document.getElementById(
-      "tableMessage"
-    );
-
-  container.innerHTML = "";
-
-  if(!playedCards?.length){
-
-    message.textContent =
-      "میز آماده است";
-
-    message.style.display =
-      "block";
-
-    return;
-  }
-
-  message.style.display =
-    "none";
-
-
-  /*
-   * کارت‌ها را بر اساس صندلی
-   * در جای مناسب قرار می‌دهیم.
-   */
-
-  for(const card of playedCards){
-
-    const player =
-      players.find(
-        p =>
-          String(p.telegram_id) ===
-          String(card.telegram_id)
-      );
-
-    if(!player)
-      continue;
-
-    const el =
-      document.createElement(
-        "div"
-      );
-
-    const position =
-      Math.min(
-        Math.max(
-          player.seat,
-          1
-        ),
-        4
-      );
-
-    el.className =
-      "played-card pc" +
-      position +
-      (
-        isRedSuit(
-          getSuit(card.card)
-        )
-          ? " red"
-          : ""
-      );
-
-    const rank =
-      getRank(card.card);
-
-    const suit =
-      getSuit(card.card);
-
-    el.innerHTML =
-      '<div class="pc-top">' +
-      rank +
-      "</div>" +
-      '<div class="pc-center">' +
-      SUIT_SYMBOL[suit] +
-      "</div>" +
-      '<div class="pc-name">' +
-      escapeHtml(
-        player.username ||
-        ("بازیکن " + player.seat)
-      ) +
-      "</div>";
-
-    container.appendChild(el);
-  }
-}
-
-
-/* =========================================================
-   HAND
-========================================================= */
-
-async function renderHand(){
-
-  const {
-    data:cards,
-    error
-  } =
-    await supabaseClient
-      .from("game_cards")
-      .select(
-        "id,card,played"
-      )
-      .eq("room_id",currentRoom.id)
-      .eq("telegram_id",telegramId)
-      .eq("played",false);
-
-  if(error){
-    console.error(error);
-    return;
-  }
-
-  const hand =
-    document.getElementById(
-      "myHand"
-    );
-
-  hand.innerHTML = "";
-
-
-  const sorted =
-    (cards || []).sort(
-      (a,b) =>
-        cardSortValue(a.card) -
-        cardSortValue(b.card)
-    );
-
-
-  for(const card of sorted){
-
-    const suit =
-      getSuit(card.card);
-
-    const el =
-      document.createElement(
-        "div"
-      );
-
-    const canPlay =
-      gameState &&
-      gameState.phase === "playing" &&
-      Number(gameState.turn_seat) ===
-      Number(mySeat) &&
-      isLegalCard(
-        card.card,
-        sorted
-      );
-
-    el.className =
-      "hand-card " +
-      (
-        isRedSuit(suit)
-          ? "red "
-          : ""
-      ) +
-      (
-        canPlay
-          ? ""
-          : "disabled"
-      );
-
-    el.innerHTML =
-      '<div class="rank">' +
-      getRank(card.card) +
-      "</div>" +
-      '<div class="suit">' +
-      SUIT_SYMBOL[suit] +
-      "</div>" +
-      '<div class="mini">' +
-      SUIT_NAME[suit] +
-      "</div>";
-
-
-    el.onclick = () => {
-
-      if(!canPlay){
-
-        if(
-          gameState &&
-          gameState.phase === "trump" &&
-          Number(gameState.turn_seat) ===
-          Number(mySeat)
-        ){
-
-          toast(
-            "اول حکم را انتخاب کن."
-          );
-
-        }else if(
-          gameState &&
-          Number(gameState.turn_seat) !==
-          Number(mySeat)
-        ){
-
-          toast(
-            "الان نوبت تو نیست."
-          );
-
-        }else{
-
-          toast(
-            "این کارت قابل بازی نیست."
-          );
-        }
-
-        return;
-      }
-
-      playCard(card);
-    };
-
-    hand.appendChild(el);
-  }
-
-
-  if(!sorted.length){
-
-    hand.innerHTML =
-      '<div style="color:#777;padding:20px">' +
-      "کارت باقی نمانده" +
-      "</div>";
-  }
-}
-
-
-/* =========================================================
-   GAME CONTROLS
-========================================================= */
-
-function renderGameControls(){
-
-  const selector =
-    document.getElementById(
-      "trumpSelector"
-    );
-
-  const turnText =
-    document.getElementById(
-      "turnText"
-    );
-
-  const handEnd =
-    document.getElementById(
-      "handEnd"
-    );
-
-  const nextButton =
-    document.getElementById(
-      "nextHandButton"
-    );
-
-  selector.classList.add("hidden");
-  handEnd.classList.add("hidden");
-
-
-  if(gameState.phase === "trump"){
 
     if(
-      Number(gameState.turn_seat) ===
-      Number(mySeat)
+      players.length >=
+      currentRoom.max_players
     ){
 
-      selector.classList.remove(
-        "hidden"
-      );
+      status.className =
+      "status success";
 
-      turnText.textContent =
-        "👑 نوبت تو برای انتخاب حکم";
+      status.textContent =
+      "🎉 روم کامل شد!";
 
     }else{
 
-      turnText.textContent =
-        "در انتظار حاکم...";
+      status.className =
+      "status";
+
+      status.textContent =
+      "در انتظار "+
+      (
+        currentRoom.max_players -
+        players.length
+      )+
+      " بازیکن دیگر...";
 
     }
 
-    return;
   }
+  catch(error){
 
-
-  if(gameState.phase === "hand_over"){
-
-    handEnd.classList.remove(
-      "hidden"
+    console.error(
+      "Refresh error:",
+      error
     );
 
-    const winner =
-      gameState.team1_score >
-      gameState.team2_score
-        ? "تیم ۱"
-        : gameState.team2_score >
-          gameState.team1_score
-          ? "تیم ۲"
-          : "مساوی";
-
-    document
-      .getElementById("handEndText")
-      .textContent =
-        "🏆 پایان دست — " +
-        winner +
-        " برنده این دست شد.";
-
-    nextButton.classList.toggle(
-      "hidden",
-      Number(mySeat) !== 1
-    );
-
-    turnText.textContent =
-      "دست تمام شد";
-
-    return;
   }
 
-
-  if(
-    Number(gameState.turn_seat) ===
-    Number(mySeat)
-  ){
-
-    turnText.textContent =
-      "🔥 نوبت تو";
-
-  }else{
-
-    const p =
-      players.find(
-        x =>
-          Number(x.seat) ===
-          Number(gameState.turn_seat)
-      );
-
-    turnText.textContent =
-      "نوبت " +
-      (
-        p?.username ||
-        ("بازیکن " + gameState.turn_seat)
-      );
-  }
 }
 
 
-/* =========================================================
-   CHOOSE TRUMP
-========================================================= */
+/* =========================
+   LEAVE
+========================= */
 
-async function chooseTrump(suit){
+async function leaveRoom(){
 
-  if(!gameState)
-    return;
+  if(currentRoomPlayerId){
 
-  if(gameState.phase !== "trump"){
-
-    toast(
-      "حکم قبلاً انتخاب شده."
+    await supabaseClient
+    .from("room_players")
+    .delete()
+    .eq(
+      "id",
+      currentRoomPlayerId
     );
 
-    return;
-  }
-
-  if(
-    Number(gameState.turn_seat) !==
-    Number(mySeat)
-  ){
-
-    toast(
-      "فقط حاکم می‌تواند حکم را انتخاب کند."
-    );
-
-    return;
   }
 
 
-  try{
+  if(refreshTimer){
 
-    /*
-     * کارت‌های باقی‌مانده را پیدا می‌کنیم.
-     */
+    clearInterval(refreshTimer);
 
-    const {
-      data:allCards,
-      error:cardsError
-    } =
-      await supabaseClient
-        .from("game_cards")0
-        .select(
-          "id,telegram_id,card,played"
-        )
-        .eq("room_id",currentRoom.id);
+    refreshTimer = null;
 
-    if(cardsError)
-      throw cardsError;
+  }
 
 
-    /*
-     * اگر فقط ۵ کارت داریم،
-     * ۸ کارت دیگر برای هر بازیکن
-     * پخش می‌کنیم.
-     */
+  currentRoom = null;
 
-    const neededRows = [];
-
-    const already =
-      allCards || [];
-
-    const remainingDeck =
-      createDeck().filter
-        card =>
-          !already.some(
-            x =>
-              x.card === card
-          )
-      );
-
-    const shuffled =
-      shuffle(remainingDeck);
-
-    let index = 0;
+  currentRoomPlayerId = null;
 
 
-    for(const player of players){
+  goHome();
 
-      const currentCount =
+}
+
+
+/* =========================
+   ENTER
+========================= */
+
+document
+.getElementById("roomCode")
+.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      joinRoom();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   START
+========================= */
+
+console.log("HOKM APP READY");
+
+</script>
+
+</body>
+    </html>
