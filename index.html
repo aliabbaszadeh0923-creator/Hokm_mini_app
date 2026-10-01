@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>HOKM</title>
 
@@ -19,30 +19,36 @@
 body{
   min-height:100vh;
   background:
-    radial-gradient(circle at top,#4a1264 0%,#180b23 45%,#08050c 100%);
+  radial-gradient(circle at top,#54136d,#17091f 48%,#07040a);
   color:#fff;
   font-family:Arial,sans-serif;
 }
 
 .app{
   width:100%;
-  max-width:520px;
+  max-width:540px;
   margin:auto;
-  padding:20px;
+  padding:18px;
   min-height:100vh;
 }
+
+.hidden{
+  display:none!important;
+}
+
+/* TOP */
 
 .top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 
 .coins{
   background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.12);
-  padding:10px 16px;
+  padding:9px 15px;
   border-radius:20px;
   color:#ffd83d;
   font-weight:bold;
@@ -51,18 +57,18 @@ body{
 .player{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
 }
 
 .avatar{
-  width:50px;
-  height:50px;
+  width:48px;
+  height:48px;
   border-radius:50%;
   background:linear-gradient(135deg,#ff20d0,#792cff);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:25px;
+  font-size:24px;
 }
 
 .player-name{
@@ -72,43 +78,42 @@ body{
 .online{
   color:#999;
   font-size:12px;
-  margin-top:4px;
+  margin-top:3px;
 }
+
+/* LOGO */
 
 .logo{
   text-align:center;
-  margin-bottom:25px;
+  margin-bottom:24px;
 }
 
 .logo h1{
-  font-size:52px;
+  font-size:50px;
   letter-spacing:8px;
-  color:#e24cff;
-  text-shadow:0 0 25px rgba(226,76,255,.5);
+  color:#e14cff;
+  text-shadow:0 0 25px #e14cff66;
 }
 
 .logo p{
   color:#aaa;
-  margin-top:5px;
 }
+
+/* CARD */
 
 .card{
   background:rgba(255,255,255,.07);
   border:1px solid rgba(255,255,255,.12);
   border-radius:28px;
-  padding:25px;
-  box-shadow:0 20px 60px rgba(0,0,0,.35);
+  padding:23px;
+  box-shadow:0 20px 60px #0008;
   backdrop-filter:blur(15px);
-}
-
-.hidden{
-  display:none!important;
 }
 
 .card-icon{
   width:105px;
   height:105px;
-  margin:0 auto 20px;
+  margin:auto auto 20px;
   border-radius:28px;
   background:linear-gradient(135deg,#ff20d0,#792cff);
   display:flex;
@@ -123,20 +128,22 @@ h2{
 }
 
 .description{
-  text-align:center;
   color:#aaa;
+  text-align:center;
   line-height:1.8;
   margin-bottom:20px;
 }
 
+/* BUTTON */
+
 button{
   width:100%;
   border:0;
-  border-radius:20px;
+  border-radius:19px;
   padding:16px;
-  margin-top:12px;
+  margin-top:11px;
   color:white;
-  font-size:17px;
+  font-size:16px;
   font-weight:bold;
   cursor:pointer;
 }
@@ -146,7 +153,7 @@ button:active{
 }
 
 .primary{
-  background:linear-gradient(135deg,#ff20ca,#7c2cff);
+  background:linear-gradient(135deg,#ff20ca,#7d2cff);
 }
 
 .secondary{
@@ -155,8 +162,8 @@ button:active{
 }
 
 .danger{
-  background:rgba(255,50,80,.12);
-  border:1px solid rgba(255,50,80,.25);
+  background:#ff355522;
+  border:1px solid #ff355544;
 }
 
 .mode-buttons{
@@ -169,32 +176,28 @@ button:active{
 }
 
 .selected{
-  outline:2px solid #e83cff;
-  background:rgba(232,60,255,.2);
+  outline:2px solid #e53cff;
+  background:#e53cff25;
 }
 
 input{
   width:100%;
   padding:17px;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(0,0,0,.3);
+  border:1px solid #ffffff20;
+  background:#0005;
   color:white;
-  font-size:18px;
   text-align:center;
+  font-size:18px;
   outline:none;
-}
-
-input::placeholder{
-  color:#777;
 }
 
 .status{
   min-height:25px;
   text-align:center;
-  margin:15px 0;
+  margin:14px 0;
   color:#ffd45a;
-  line-height:1.7;
+  line-height:1.6;
 }
 
 .success{
@@ -202,37 +205,299 @@ input::placeholder{
 }
 
 .error{
-  color:#ff6678;
+  color:#ff6878;
 }
 
+/* ROOM */
+
 .room-code{
-  text-align:center;
   direction:ltr;
+  text-align:center;
+  color:#ff4ce4;
   font-size:40px;
   font-weight:bold;
   letter-spacing:7px;
-  color:#ff50e6;
   margin:20px 0;
 }
 
 .players-count{
   text-align:center;
   color:#ccc;
-  margin-bottom:15px;
+}
+
+/* =========================
+   GAME
+========================= */
+
+.game{
+  position:relative;
+  width:100%;
+}
+
+.game-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.game-title{
+  color:#ff55e9;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.score{
+  background:#ffffff10;
+  border:1px solid #ffffff15;
+  padding:8px 12px;
+  border-radius:15px;
+  font-size:13px;
+}
+
+.table{
+  position:relative;
+  height:620px;
+  overflow:hidden;
+  border-radius:35px;
+  background:
+  radial-gradient(circle,#273d32,#10251d 60%,#07120e);
+  border:5px solid #44251c;
+  box-shadow:
+  inset 0 0 40px #000,
+  0 20px 50px #0008;
+}
+
+/* players */
+
+.player-seat{
+  position:absolute;
+  width:105px;
+  text-align:center;
+  z-index:5;
+}
+
+.seat-avatar{
+  width:47px;
+  height:47px;
+  margin:auto;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff20d0,#782cff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  border:2px solid #ffffff33;
+}
+
+.seat-name{
+  font-size:12px;
+  margin-top:5px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.turn{
+  color:#ff52e9;
+  font-weight:bold;
+}
+
+.seat-top{
+  top:12px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.seat-left{
+  left:4px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.seat-right{
+  right:4px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.seat-bottom{
+  bottom:125px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* center */
+
+.center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  background:#ffffff06;
+  border:1px solid #ffffff12;
+}
+
+.trick-card{
+  position:absolute;
+  width:58px;
+  height:80px;
+  border-radius:8px;
+  background:white;
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  box-shadow:0 5px 15px #0008;
+}
+
+.trick-top{
+  top:5px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.trick-left{
+  left:5px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.trick-right{
+  right:5px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.trick-bottom{
+  bottom:5px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* trump */
+
+.trump{
+  position:absolute;
+  top:78px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#0008;
+  border:1px solid #ffffff22;
+  padding:8px 14px;
+  border-radius:15px;
+  font-size:14px;
+  z-index:10;
+}
+
+/* hand */
+
+.hand{
+  position:absolute;
+  bottom:8px;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  height:110px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  direction:ltr;
+  z-index:20;
+}
+
+.card-playing{
+  width:52px;
+  height:76px;
+  background:#fff;
+  color:#111;
+  border-radius:8px;
+  margin-left:-10px;
+  border:1px solid #ddd;
+  box-shadow:0 4px 12px #0009;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  cursor:pointer;
+  transition:.18s;
+  position:relative;
+}
+
+.card-playing:first-child{
+  margin-left:0;
+}
+
+.card-playing:hover{
+  transform:translateY(-18px);
+}
+
+.card-red{
+  color:#e22;
+}
+
+.card-black{
+  color:#111;
+}
+
+/* trump selection */
+
+.trump-box{
+  margin-top:15px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.trump-btn{
+  margin:0;
+  padding:14px 5px;
+  background:#ffffff0d;
+  border:1px solid #ffffff15;
+}
+
+.trump-btn.red{
+  color:#ff4c61;
+}
+
+.game-message{
+  text-align:center;
+  min-height:26px;
+  color:#ffd45a;
+  margin:10px 0;
+}
+
+/* GAME OVER */
+
+.game-result{
+  text-align:center;
+  padding:15px;
+}
+
+.big-result{
+  font-size:55px;
+  margin:15px;
 }
 
 .bottom{
   text-align:center;
   color:#666;
   font-size:12px;
-  margin-top:25px;
+  margin-top:22px;
 }
+
 </style>
 </head>
 
 <body>
 
 <div class="app">
+
+<!-- HEADER -->
 
 <div class="top">
 
@@ -243,7 +508,7 @@ input::placeholder{
   <div class="player">
 
     <div>
-      <div class="player-name" id="username">
+      <div id="username" class="player-name">
         Player
       </div>
 
@@ -269,18 +534,16 @@ input::placeholder{
 
 <!-- HOME -->
 
-<div class="card" id="home">
+<div id="home" class="card">
 
   <div class="card-icon">
     🃏
   </div>
 
-  <h2>
-    آماده‌ای؟
-  </h2>
+  <h2>آماده‌ای؟</h2>
 
   <p class="description">
-    وارد بازی حکم شو و با بازیکنان واقعی بازی کن
+    وارد بازی حکم شو و با بازیکنان واقعی رقابت کن
   </p>
 
   <button class="primary" onclick="showModes()">
@@ -300,11 +563,9 @@ input::placeholder{
 
 <!-- MODES -->
 
-<div class="card hidden" id="modes">
+<div id="modes" class="card hidden">
 
-  <h2>
-    تعداد بازیکنان
-  </h2>
+  <h2>تعداد بازیکنان</h2>
 
   <p class="description">
     نوع بازی را انتخاب کن
@@ -312,15 +573,13 @@ input::placeholder{
 
   <div class="mode-buttons">
 
-    <button
-      id="mode2"
+    <button id="mode2"
       class="secondary"
       onclick="selectMode(2)">
       👥 ۲ نفره
     </button>
 
-    <button
-      id="mode4"
+    <button id="mode4"
       class="secondary selected"
       onclick="selectMode(4)">
       👥 ۴ نفره
@@ -328,20 +587,17 @@ input::placeholder{
 
   </div>
 
-  <button
-    class="primary"
+  <button class="primary"
     onclick="showCreate()">
     🚀 ساخت روم
   </button>
 
-  <button
-    class="secondary"
+  <button class="secondary"
     onclick="showJoin()">
     🔗 ورود به روم
   </button>
 
-  <button
-    class="secondary"
+  <button class="secondary"
     onclick="goHome()">
     ↩️ برگشت
   </button>
@@ -351,11 +607,9 @@ input::placeholder{
 
 <!-- CREATE -->
 
-<div class="card hidden" id="create">
+<div id="create" class="card hidden">
 
-  <h2>
-    ساخت روم 🎮
-  </h2>
+  <h2>ساخت روم 🎮</h2>
 
   <p class="description">
     ظرفیت روم را انتخاب کن
@@ -363,15 +617,13 @@ input::placeholder{
 
   <div class="mode-buttons">
 
-    <button
-      id="create2"
+    <button id="create2"
       class="secondary"
       onclick="setCreateMode(2)">
       ۲ نفره
     </button>
 
-    <button
-      id="create4"
+    <button id="create4"
       class="secondary selected"
       onclick="setCreateMode(4)">
       ۴ نفره
@@ -379,16 +631,15 @@ input::placeholder{
 
   </div>
 
-  <div id="createStatus" class="status"></div>
+  <div id="createStatus"
+       class="status"></div>
 
-  <button
-    class="primary"
+  <button class="primary"
     onclick="createRoom()">
     🎮 ساخت روم
   </button>
 
-  <button
-    class="secondary"
+  <button class="secondary"
     onclick="showModes()">
     ↩️ برگشت
   </button>
@@ -398,11 +649,9 @@ input::placeholder{
 
 <!-- JOIN -->
 
-<div class="card hidden" id="join">
+<div id="join" class="card hidden">
 
-  <h2>
-    ورود به روم 🔗
-  </h2>
+  <h2>ورود به روم 🔗</h2>
 
   <p class="description">
     کد روم را وارد کن
@@ -411,19 +660,17 @@ input::placeholder{
   <input
     id="roomCode"
     maxlength="6"
-    placeholder="مثلاً A7K29P"
-    autocomplete="off">
+    placeholder="مثلاً A7K29P">
 
-  <div id="joinStatus" class="status"></div>
+  <div id="joinStatus"
+       class="status"></div>
 
-  <button
-    class="primary"
+  <button class="primary"
     onclick="joinRoom()">
     🔗 ورود به روم
   </button>
 
-  <button
-    class="secondary"
+  <button class="secondary"
     onclick="showModes()">
     ↩️ برگشت
   </button>
@@ -433,45 +680,239 @@ input::placeholder{
 
 <!-- ROOM -->
 
-<div class="card hidden" id="room">
+<div id="room" class="card hidden">
 
-  <h2>
-    روم شما 🎮
-  </h2>
+  <h2>روم شما 🎮</h2>
 
   <p class="description">
-    این کد را برای بازیکنان دیگر بفرست
+    کد را برای بازیکنان دیگر بفرست
   </p>
 
-  <div
-    id="roomCodeDisplay"
-    class="room-code">
+  <div id="roomCodeDisplay"
+       class="room-code">
     ------
   </div>
 
-  <div
-    id="playersCount"
-    class="players-count">
+  <div id="playersCount"
+       class="players-count">
     1 / 4 بازیکن
   </div>
 
-  <div
-    id="roomStatus"
-    class="status">
+  <div id="roomStatus"
+       class="status">
     در انتظار بازیکنان...
   </div>
 
   <button
-    class="primary"
+    id="startGameButton"
+    class="primary hidden"
+    onclick="startGame()">
+    🃏 شروع بازی
+  </button>
+
+  <button class="secondary"
     onclick="refreshRoom()">
     🔄 بروزرسانی
   </button>
 
-  <button
-    class="danger"
+  <button class="danger"
     onclick="leaveRoom()">
     خروج از روم
   </button>
+
+</div>
+
+
+<!-- GAME -->
+
+<div id="game" class="hidden">
+
+  <div class="game">
+
+    <div class="game-top">
+
+      <div class="game-title">
+        HOKM ♠
+      </div>
+
+      <div id="score"
+           class="score">
+        تیم شما: 0 | حریف: 0
+      </div>
+
+    </div>
+
+
+    <div class="table">
+
+      <!-- TOP PLAYER -->
+
+      <div
+        id="seatTop"
+        class="player-seat seat-top">
+
+        <div class="seat-avatar">
+          👤
+        </div>
+
+        <div
+          id="nameTop"
+          class="seat-name">
+          بازیکن
+        </div>
+
+      </div>
+
+
+      <!-- LEFT -->
+
+      <div
+        id="seatLeft"
+        class="player-seat seat-left">
+
+        <div class="seat-avatar">
+          👤
+        </div>
+
+        <div
+          id="nameLeft"
+          class="seat-name">
+          بازیکن
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT -->
+
+      <div
+        id="seatRight"
+        class="player-seat seat-right">
+
+        <div class="seat-avatar">
+          👤
+        </div>
+
+        <div
+          id="nameRight"
+          class="seat-name">
+          بازیکن
+        </div>
+
+      </div>
+
+
+      <!-- BOTTOM -->
+
+      <div
+        id="seatBottom"
+        class="player-seat seat-bottom">
+
+        <div class="seat-avatar">
+          ♠
+        </div>
+
+        <div
+          id="nameBottom"
+          class="seat-name">
+          شما
+        </div>
+
+      </div>
+
+
+      <!-- TRUMP -->
+
+      <div
+        id="trumpDisplay"
+        class="trump hidden">
+      </div>
+
+
+      <!-- CENTER -->
+
+      <div class="center">
+
+        <div
+          id="trickTop"
+          class="trick-card trick-top hidden">
+        </div>
+
+        <div
+          id="trickLeft"
+          class="trick-card trick-left hidden">
+        </div>
+
+        <div
+          id="trickRight"
+          class="trick-card trick-right hidden">
+        </div>
+
+        <div
+          id="trickBottom"
+          class="trick-card trick-bottom hidden">
+        </div>
+
+      </div>
+
+
+      <!-- HAND -->
+
+      <div
+        id="hand"
+        class="hand">
+      </div>
+
+    </div>
+
+
+    <div
+      id="gameMessage"
+      class="game-message">
+      در حال آماده‌سازی بازی...
+    </div>
+
+
+    <!-- TRUMP SELECT -->
+
+    <div
+      id="trumpBox"
+      class="trump-box hidden">
+
+      <button
+        class="trump-btn"
+        onclick="chooseTrump('♠')">
+        ♠️ پیک
+      </button>
+
+      <button
+        class="trump-btn red"
+        onclick="chooseTrump('♥')">
+        ♥️ دل
+      </button>
+
+      <button
+        class="trump-btn red"
+        onclick="chooseTrump('♦')">
+        ♦️ خشت
+      </button>
+
+      <button
+        class="trump-btn"
+        onclick="chooseTrump('♣')">
+        ♣️ گشنیز
+      </button>
+
+    </div>
+
+
+    <button
+      class="secondary"
+      onclick="backToRoom()">
+      ↩️ برگشت به روم
+    </button>
+
+  </div>
 
 </div>
 
@@ -485,9 +926,9 @@ input::placeholder{
 
 <script>
 
-/* =========================
+/* =====================================================
    SUPABASE
-========================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://uhgikijqlirttwdykaah.supabase.co";
@@ -502,9 +943,9 @@ window.supabase.createClient(
 );
 
 
-/* =========================
+/* =====================================================
    TELEGRAM
-========================= */
+===================================================== */
 
 const tg =
 window.Telegram &&
@@ -518,11 +959,11 @@ if(tg){
 }
 
 
-/* =========================
+/* =====================================================
    USER
-========================= */
+===================================================== */
 
-let telegramUser = null;
+let telegramUser;
 
 if(
   tg &&
@@ -531,7 +972,7 @@ if(
 ){
 
   telegramUser =
-    tg.initDataUnsafe.user;
+  tg.initDataUnsafe.user;
 
 }else{
 
@@ -549,19 +990,20 @@ String(telegramUser.id);
 const displayName =
 telegramUser.username
 ? "@"+telegramUser.username
-: (
+:(
   telegramUser.first_name ||
   "Player"
 );
 
 document
 .getElementById("username")
-.textContent = displayName;
+.textContent =
+displayName;
 
 
-/* =========================
-   VARIABLES
-========================= */
+/* =====================================================
+   ROOM VARIABLES
+===================================================== */
 
 let selectedMode = 4;
 
@@ -572,19 +1014,44 @@ let currentRoomPlayerId = null;
 let refreshTimer = null;
 
 
-/* =========================
-   PAGE FUNCTIONS
-========================= */
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
+let deck = [];
+
+let myHand = [];
+
+let trump = null;
+
+let currentTurn = 0;
+
+let mySeat = 1;
+
+let gameStarted = false;
+
+let myTricks = 0;
+
+let enemyTricks = 0;
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 function hideAll(){
 
   document
   .querySelectorAll(".card")
-  .forEach(function(card){
+  .forEach(function(el){
 
-    card.classList.add("hidden");
+    el.classList.add("hidden");
 
   });
+
+  document
+  .getElementById("game")
+  .classList.add("hidden");
 
 }
 
@@ -633,9 +1100,9 @@ function showJoin(){
 }
 
 
-/* =========================
-   GAME MODE
-========================= */
+/* =====================================================
+   MODE
+===================================================== */
 
 function selectMode(mode){
 
@@ -679,9 +1146,9 @@ function setCreateMode(mode){
 }
 
 
-/* =========================
+/* =====================================================
    ROOM CODE
-========================= */
+===================================================== */
 
 function generateRoomCode(){
 
@@ -706,9 +1173,9 @@ function generateRoomCode(){
 }
 
 
-/* =========================
+/* =====================================================
    CREATE ROOM
-========================= */
+===================================================== */
 
 async function createRoom(){
 
@@ -717,8 +1184,7 @@ async function createRoom(){
     "createStatus"
   );
 
-  status.className =
-  "status";
+  status.className = "status";
 
   status.textContent =
   "در حال ساخت روم...";
@@ -730,13 +1196,7 @@ async function createRoom(){
 
     let room = null;
 
-    let roomError = null;
-
-
-    /*
-      چند بار امتحان می‌کنیم
-      تا کد تکراری باعث خطا نشود
-    */
+    let error = null;
 
     for(let i=0;i<5;i++){
 
@@ -755,32 +1215,23 @@ async function createRoom(){
       .select()
       .single();
 
-      room =
-      result.data;
+      room = result.data;
 
-      roomError =
-      result.error;
+      error = result.error;
 
-      if(!roomError){
-        break;
-      }
+      if(!error) break;
 
       code =
       generateRoomCode();
 
     }
 
-
-    if(roomError){
-      throw roomError;
+    if(error){
+      throw error;
     }
 
 
-    /*
-      اضافه کردن سازنده
-    */
-
-    const playerResult =
+    const player =
     await supabaseClient
     .from("room_players")
     .insert({
@@ -800,24 +1251,24 @@ async function createRoom(){
     .single();
 
 
-    if(playerResult.error){
+    if(player.error){
 
       await supabaseClient
       .from("rooms")
       .delete()
       .eq("id",room.id);
 
-      throw playerResult.error;
+      throw player.error;
 
     }
 
 
-    currentRoom =
-    room;
+    currentRoom = room;
 
     currentRoomPlayerId =
-    playerResult.data.id;
+    player.data.id;
 
+    mySeat = 1;
 
     openRoom(room);
 
@@ -831,16 +1282,16 @@ async function createRoom(){
 
     status.textContent =
     "❌ خطا: "+
-    (error.message || "خطای نامشخص");
+    (error.message || "نامشخص");
 
   }
 
 }
 
 
-/* =========================
+/* =====================================================
    JOIN ROOM
-========================= */
+===================================================== */
 
 async function joinRoom(){
 
@@ -877,12 +1328,12 @@ async function joinRoom(){
   "status";
 
   status.textContent =
-  "در حال بررسی روم...";
+  "در حال ورود...";
 
 
   try{
 
-    const roomResult =
+    const result =
     await supabaseClient
     .from("rooms")
     .select("*")
@@ -890,13 +1341,13 @@ async function joinRoom(){
     .maybeSingle();
 
 
-    if(roomResult.error){
-      throw roomResult.error;
+    if(result.error){
+      throw result.error;
     }
 
 
     const room =
-    roomResult.data;
+    result.data;
 
 
     if(!room){
@@ -911,10 +1362,6 @@ async function joinRoom(){
 
     }
 
-
-    /*
-      بررسی بازیکن قبلی
-    */
 
     const existing =
     await supabaseClient
@@ -938,16 +1385,15 @@ async function joinRoom(){
       currentRoomPlayerId =
       existing.data.id;
 
+      mySeat =
+      existing.data.seat;
+
       openRoom(room);
 
       return;
 
     }
 
-
-    /*
-      بازیکنان فعلی
-    */
 
     const playersResult =
     await supabaseClient
@@ -978,11 +1424,7 @@ async function joinRoom(){
     }
 
 
-    /*
-      پیدا کردن صندلی خالی
-    */
-
-    const usedSeats =
+    const used =
     players.map(function(p){
       return p.seat;
     });
@@ -990,16 +1432,12 @@ async function joinRoom(){
 
     let seat = 1;
 
-    while(usedSeats.includes(seat)){
+    while(used.includes(seat)){
       seat++;
     }
 
 
-    /*
-      اضافه کردن بازیکن
-    */
-
-    const insertResult =
+    const inserted =
     await supabaseClient
     .from("room_players")
     .insert({
@@ -1019,9 +1457,18 @@ async function joinRoom(){
     .single();
 
 
-    if(insertResult.error){
-      throw insertResult.error;
+    if(inserted.error){
+      throw inserted.error;
     }
+
+
+    currentRoom =
+    room;
+
+    currentRoomPlayerId =
+    inserted.data.id;
+
+    mySeat = seat;
 
 
     if(players.length + 1 >= room.max_players){
@@ -1033,17 +1480,7 @@ async function joinRoom(){
       })
       .eq("id",room.id);
 
-      room.status =
-      "full";
-
     }
-
-
-    currentRoom =
-    room;
-
-    currentRoomPlayerId =
-    insertResult.data.id;
 
 
     openRoom(room);
@@ -1058,16 +1495,16 @@ async function joinRoom(){
 
     status.textContent =
     "❌ خطا: "+
-    (error.message || "خطای نامشخص");
+    (error.message || "نامشخص");
 
   }
 
 }
 
 
-/* =========================
+/* =====================================================
    OPEN ROOM
-========================= */
+===================================================== */
 
 function openRoom(room){
 
@@ -1077,12 +1514,10 @@ function openRoom(room){
   .getElementById("room")
   .classList.remove("hidden");
 
-
   document
   .getElementById("roomCodeDisplay")
   .textContent =
   room.code;
-
 
   refreshRoom();
 
@@ -1101,16 +1536,15 @@ function openRoom(room){
 }
 
 
-/* =========================
+/* =====================================================
    REFRESH ROOM
-========================= */
+===================================================== */
 
 async function refreshRoom(){
 
   if(!currentRoom){
     return;
   }
-
 
   try{
 
@@ -1168,6 +1602,12 @@ async function refreshRoom(){
     );
 
 
+    const start =
+    document.getElementById(
+      "startGameButton"
+    );
+
+
     if(
       players.length >=
       currentRoom.max_players
@@ -1177,7 +1617,9 @@ async function refreshRoom(){
       "status success";
 
       status.textContent =
-      "🎉 روم کامل شد!";
+      "🎉 همه بازیکنان آماده‌اند!";
+
+      start.classList.remove("hidden");
 
     }else{
 
@@ -1192,13 +1634,15 @@ async function refreshRoom(){
       )+
       " بازیکن دیگر...";
 
+      start.classList.add("hidden");
+
     }
 
   }
   catch(error){
 
     console.error(
-      "Refresh error:",
+      "Refresh:",
       error
     );
 
@@ -1207,21 +1651,55 @@ async function refreshRoom(){
 }
 
 
-/* =========================
-   LEAVE
-========================= */
+/* =====================================================
+   START GAME
+===================================================== */
 
-async function leaveRoom(){
+async function startGame(){
 
-  if(currentRoomPlayerId){
+  if(!currentRoom){
+    return;
+  }
 
-    await supabaseClient
-    .from("room_players")
-    .delete()
-    .eq(
-      "id",
-      currentRoomPlayerId
+
+  const result =
+  await supabaseClient
+  .from("room_players")
+  .select(
+    "id,telegram_id,username,seat"
+  )
+  .eq(
+    "room_id",
+    currentRoom.id
+  )
+  .order("seat");
+
+
+  if(result.error){
+
+    alert(
+      "خطا در دریافت بازیکنان"
     );
+
+    return;
+
+  }
+
+
+  const players =
+  result.data || [];
+
+
+  if(
+    players.length <
+    currentRoom.max_players
+  ){
+
+    alert(
+      "هنوز همه بازیکنان وارد نشده‌اند."
+    );
+
+    return;
 
   }
 
@@ -1235,43 +1713,220 @@ async function leaveRoom(){
   }
 
 
-  currentRoom = null;
+  setupGamePlayers(players);
 
-  currentRoomPlayerId = null;
-
-
-  goHome();
+  initGame();
 
 }
 
 
-/* =========================
-   ENTER
-========================= */
+/* =====================================================
+   GAME PLAYERS
+===================================================== */
 
-document
-.getElementById("roomCode")
-.addEventListener(
-  "keydown",
-  function(event){
+function setupGamePlayers(players){
 
-    if(event.key === "Enter"){
+  const positions =
+  currentRoom.max_players === 2
+  ? ["bottom","top"]
+  : ["bottom","left","top","right"];
 
-      joinRoom();
+
+  positions.forEach(function(pos){
+
+    const player =
+    players.find(function(p){
+
+      return p.seat ===
+      players[
+        positions.indexOf(pos)
+      ]?.seat;
+
+    });
+
+  });
+
+
+  /*
+    خودمان پایین هستیم.
+    بقیه بازیکنان اطراف قرار می‌گیرند.
+  */
+
+  document
+  .getElementById("nameBottom")
+  .textContent =
+  displayName;
+
+
+  if(currentRoom.max_players === 2){
+
+    const other =
+    players.find(function(p){
+
+      return String(p.telegram_id)
+      !== telegramId;
+
+    });
+
+
+    document
+    .getElementById("seatLeft")
+    .classList.add("hidden");
+
+    document
+    .getElementById("seatRight")
+    .classList.add("hidden");
+
+
+    if(other){
+
+      document
+      .getElementById("nameTop")
+      .textContent =
+      other.username || "بازیکن";
 
     }
 
+  }else{
+
+    document
+    .getElementById("seatLeft")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("seatRight")
+    .classList.remove("hidden");
+
+
+    const others =
+    players.filter(function(p){
+
+      return String(p.telegram_id)
+      !== telegramId;
+
+    });
+
+
+    document
+    .getElementById("nameTop")
+    .textContent =
+    others[0]?.username ||
+    "بازیکن";
+
+    document
+    .getElementById("nameLeft")
+    .textContent =
+    others[1]?.username ||
+    "بازیکن";
+
+    document
+    .getElementById("nameRight")
+    .textContent =
+    others[2]?.username ||
+    "بازیکن";
+
   }
-);
+
+}
 
 
-/* =========================
-   START
-========================= */
+/* =====================================================
+   DECK
+===================================================== */
 
-console.log("HOKM APP READY");
+function createDeck(){
 
-</script>
+  const suits =
+  ["♠","♥","♦","♣"];
 
-</body>
-    </html>
+  const values =
+  [
+    "2","3","4","5","6","7",
+    "8","9","10","J","Q","K","A"
+  ];
+
+
+  let cards = [];
+
+
+  suits.forEach(function(suit){
+
+    values.forEach(function(value){
+
+      cards.push({
+
+        suit:suit,
+
+        value:value
+
+      });
+
+    });
+
+  });
+
+
+  return cards;
+
+}
+
+
+/* =====================================================
+   SHUFFLE
+===================================================== */
+
+function shuffle(array){
+
+  for(
+    let i=array.length-1;
+    i>0;
+    i--
+  ){
+
+    const j =
+    Math.floor(
+      Math.random()*(i+1)
+    );
+
+
+    [
+      array[i],
+      array[j]
+    ] =
+    [
+      array[j],
+      array[i]
+    ];
+
+  }
+
+  return array;
+
+}
+
+
+/* =====================================================
+   START LOCAL GAME
+===================================================== */
+
+function initGame(){
+
+  gameStarted = true;
+
+  trump = null;
+
+  currentTurn = 0;
+
+  myTricks = 0;
+
+  enemyTricks = 0;
+
+
+  deck =
+  shuffle(
+    createDeck()
+  );
+
+
+  /*
+   
