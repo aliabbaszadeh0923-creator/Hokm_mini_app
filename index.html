@@ -1,766 +1,1224 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOKM</title>
 
-<title>HOKM</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-*{box-sizing:border-box}
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #42145c 0%, #180d22 45%, #09060d 100%);
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-body{
-margin:0;
-min-height:100vh;
-font-family:Arial,sans-serif;
-color:white;
-background:linear-gradient(135deg,#43134f,#170b20,#080609);
-}
+    .app {
+      width: 100%;
+      max-width: 520px;
+      min-height: 100vh;
+      margin: auto;
+      padding: 20px;
+    }
 
-.app{
-max-width:520px;
-min-height:100vh;
-margin:auto;
-padding:20px;
-}
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 35px;
+    }
 
-.top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+    .coins {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 10px 18px;
+      border-radius: 25px;
+      color: #ffd83d;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-.coins{
-background:rgba(255,255,255,.08);
-padding:10px 16px;
-border-radius:25px;
-}
+    .player {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: right;
+    }
 
-.player{
-text-align:center;
-}
+    .avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#ff22d6,#8b2cff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 0 25px rgba(255,40,220,.35);
+    }
 
-.avatar{
-width:52px;
-height:52px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:auto;
-font-size:25px;
-background:linear-gradient(135deg,#ff28d7,#7d35ff);
-}
+    .player-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-.logo{
-text-align:center;
-margin:55px 0 35px;
-}
+    .online {
+      color: #aaa;
+      font-size: 13px;
+      margin-top: 5px;
+    }
 
-.logo h1{
-margin:0;
-font-size:58px;
-letter-spacing:6px;
-color:#e747ff;
-}
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-.logo p{
-color:#aaa;
-}
+    .logo h1 {
+      font-size: 55px;
+      letter-spacing: 8px;
+      color: #e04cff;
+      text-shadow: 0 0 25px rgba(224,76,255,.4);
+    }
 
-.card{
-background:rgba(255,255,255,.07);
-border:1px solid rgba(255,255,255,.1);
-border-radius:28px;
-padding:28px 20px;
-text-align:center;
-}
+    .logo p {
+      color: #bbb;
+      font-size: 16px;
+      margin-top: 8px;
+    }
 
-.icon{
-font-size:60px;
-}
+    .card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 30px;
+      padding: 25px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      backdrop-filter: blur(15px);
+    }
 
-button{
-width:100%;
-padding:17px;
-margin-top:14px;
-border:0;
-border-radius:20px;
-font-size:17px;
-font-weight:bold;
-color:white;
-background:linear-gradient(135deg,#ff27d1,#8534ff);
-}
+    .card-icon {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 25px;
+      border-radius: 30px;
+      background: linear-gradient(135deg,#ff22d6,#762cff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 58px;
+      box-shadow: 0 0 30px rgba(230,40,255,.3);
+    }
 
-button.secondary{
-background:rgba(255,255,255,.08);
-}
+    h2 {
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 25px;
+    }
 
-input{
-width:100%;
-padding:16px;
-margin-top:15px;
-border-radius:15px;
-border:1px solid #555;
-background:#151018;
-color:white;
-font-size:20px;
-text-align:center;
-}
+    .description {
+      text-align: center;
+      color: #aaa;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
 
-.hidden{
-display:none;
-}
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 22px;
+      padding: 17px;
+      margin-top: 12px;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .2s;
+    }
 
-.message{
-margin-top:20px;
-padding:16px;
-border-radius:15px;
-background:rgba(255,255,255,.08);
-line-height:1.8;
-}
+    button:active {
+      transform: scale(.97);
+    }
 
-.room-code{
-font-size:36px;
-font-weight:bold;
-letter-spacing:8px;
-padding:20px;
-margin:20px 0;
-border-radius:20px;
-background:rgba(255,255,255,.08);
-}
+    .primary {
+      background: linear-gradient(135deg,#ff20c9,#812bff);
+      box-shadow: 0 8px 25px rgba(230,30,220,.25);
+    }
 
-.player-slot{
-padding:15px;
-margin-top:8px;
-border-radius:15px;
-background:rgba(255,255,255,.06);
-text-align:right;
-}
-</style>
+    .secondary {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .danger {
+      background: rgba(255,60,90,.12);
+      border: 1px solid rgba(255,60,90,.2);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .mode-title {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+
+    .mode-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .mode-buttons button {
+      margin-top: 0;
+    }
+
+    .selected {
+      outline: 2px solid #e83bff;
+      background: rgba(232,59,255,.18);
+    }
+
+    input {
+      width: 100%;
+      padding: 17px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      color: white;
+      font-size: 18px;
+      text-align: center;
+      outline: none;
+      margin-bottom: 5px;
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    .room-box {
+      text-align: center;
+    }
+
+    .room-code {
+      font-size: 38px;
+      font-weight: bold;
+      letter-spacing: 7px;
+      color: #ff50e6;
+      margin: 20px 0;
+      direction: ltr;
+    }
+
+    .players-count {
+      color: #ccc;
+      margin: 10px 0 20px;
+    }
+
+    .status {
+      min-height: 25px;
+      text-align: center;
+      margin: 15px 0;
+      color: #ffcc55;
+      line-height: 1.6;
+    }
+
+    .success {
+      color: #4dff9a;
+    }
+
+    .error {
+      color: #ff6b7d;
+    }
+
+    .loader {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(255,255,255,.25);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .stats {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .stat {
+      flex: 1;
+      background: rgba(0,0,0,.2);
+      border-radius: 18px;
+      padding: 15px 5px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+    }
+
+    .stat span {
+      color: #999;
+      font-size: 13px;
+    }
+
+    .bottom {
+      text-align: center;
+      color: #666;
+      margin-top: 30px;
+      font-size: 13px;
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="app">
 
-<div class="top">
+  <div class="top">
+    <div class="coins">0 🪙</div>
 
-<div class="coins">
-🪙 0
-</div>
+    <div class="player">
+      <div>
+        <div class="player-name" id="username">Player</div>
+        <div class="online">آماده بازی</div>
+      </div>
+      <div class="avatar">♠</div>
+    </div>
+  </div>
 
-<div class="player">
-<div class="avatar">♠</div>
-<div id="username">Player</div>
-</div>
+  <div class="logo">
+    <h1>HOKM</h1>
+    <p>Ultimate Card Game</p>
+  </div>
 
-</div>
+  <!-- صفحه اصلی -->
+  <div class="card" id="home">
 
-<div class="logo">
-<h1>HOKM</h1>
-<p>Ultimate Card Game</p>
-</div>
+    <div class="card-icon">🃏</div>
 
+    <h2>آماده‌ای؟</h2>
 
-<!-- HOME -->
+    <p class="description">
+      وارد بازی حکم شو و با بازیکنان واقعی رقابت کن
+    </p>
 
-<div class="card" id="home">
+    <button class="primary" onclick="showModes()">
+      🎮 شروع بازی
+    </button>
 
-<div class="icon">🃏</div>
+    <button class="secondary" onclick="showCreate()">
+      👥 ساخت روم
+    </button>
 
-<h2>آماده‌ای؟</h2>
+    <button class="secondary" onclick="showJoin()">
+      🔗 ورود به روم
+    </button>
 
-<p>
-وارد بازی حکم شو و با دوستانت بازی کن.
-</p>
+    <div class="stats">
+      <div class="stat">
+        <strong id="winRate">0%</strong>
+        <span>برد</span>
+      </div>
 
-<button onclick="createRoom()">
-👥 ساخت روم
-</button>
+      <div class="stat">
+        <strong>0</strong>
+        <span>برد</span>
+      </div>
 
-<button class="secondary" onclick="showJoin()">
-🔗 ورود به روم
-</button>
+      <div class="stat">
+        <strong>0</strong>
+        <span>بازی</span>
+      </div>
+    </div>
 
-</div>
-
-
-<!-- JOIN -->
-
-<div class="card hidden" id="join">
-
-<div class="icon">🔗</div>
-
-<h2>ورود به روم</h2>
-
-<input
-id="joinCode"
-maxlength="6"
-inputmode="numeric"
-placeholder="کد ۶ رقمی">
-
-<button onclick="joinRoom()">
-🚪 ورود
-</button>
-
-<button class="secondary" onclick="home()">
-↩️ برگشت
-</button>
-
-<div id="joinMessage"></div>
-
-</div>
+  </div>
 
 
-<!-- ROOM -->
+  <!-- انتخاب تعداد بازیکن -->
+  <div class="card hidden" id="modes">
 
-<div class="card hidden" id="room">
+    <h2>نوع بازی</h2>
 
-<div class="icon">🃏</div>
+    <p class="description">
+      تعداد بازیکنان را انتخاب کن
+    </p>
 
-<h2>روم شما</h2>
+    <div class="mode-buttons">
 
-<div class="room-code" id="roomCode">
-------
-</div>
+      <button
+        id="mode2"
+        class="secondary"
+        onclick="selectMode(2)">
+        👥 ۲ نفره
+      </button>
 
-<button onclick="copyCode()">
-📋 کپی کد
-</button>
+      <button
+        id="mode4"
+        class="secondary"
+        onclick="selectMode(4)">
+        👥 ۴ نفره
+      </button>
 
-<button class="secondary" onclick="shareRoom()">
-📤 دعوت دوستان
-</button>
+    </div>
 
-<h3>بازیکنان</h3>
+    <button class="primary" onclick="showCreate()">
+      ساخت روم 🚀
+    </button>
 
-<div id="players">
-در حال بارگذاری...
-</div>
+    <button class="secondary" onclick="showJoin()">
+      ورود به روم 🔗
+    </button>
 
-<button class="secondary" onclick="home()">
-↩️ خروج
-</button>
+    <button class="secondary" onclick="goHome()">
+      برگشت
+    </button>
 
-</div>
+  </div>
+
+
+  <!-- ساخت روم -->
+  <div class="card hidden" id="create">
+
+    <h2>ساخت روم</h2>
+
+    <p class="description">
+      ظرفیت روم را انتخاب کن
+    </p>
+
+    <div class="mode-buttons">
+
+      <button
+        id="create2"
+        class="secondary"
+        onclick="setCreateMode(2)">
+        ۲ نفره
+      </button>
+
+      <button
+        id="create4"
+        class="secondary selected"
+        onclick="setCreateMode(4)">
+        ۴ نفره
+      </button>
+
+    </div>
+
+    <div id="createStatus" class="status"></div>
+
+    <button class="primary" onclick="createRoom()">
+      ساخت روم 🎮
+    </button>
+
+    <button class="secondary" onclick="showModes()">
+      برگشت
+    </button>
+
+  </div>
+
+
+  <!-- ورود به روم -->
+  <div class="card hidden" id="join">
+
+    <h2>ورود به روم</h2>
+
+    <p class="description">
+      کد روم را وارد کن
+    </p>
+
+    <input
+      id="roomCode"
+      type="text"
+      maxlength="6"
+      placeholder="مثلاً A7K29P"
+      autocomplete="off">
+
+    <div id="joinStatus" class="status"></div>
+
+    <button class="primary" onclick="joinRoom()">
+      ورود به روم 🔗
+    </button>
+
+    <button class="secondary" onclick="showModes()">
+      برگشت
+    </button>
+
+  </div>
+
+
+  <!-- روم -->
+  <div class="card hidden" id="room">
+
+    <div class="room-box">
+
+      <h2>روم شما 🎮</h2>
+
+      <p class="description">
+        کد را برای بازیکنان دیگر بفرست
+      </p>
+
+      <div class="room-code" id="roomCodeDisplay">
+        ------
+      </div>
+
+      <div class="players-count" id="playersCount">
+        1 / 4 بازیکن
+      </div>
+
+      <div id="roomStatus" class="status">
+        در انتظار بازیکنان...
+      </div>
+
+      <button class="primary" onclick="refreshRoom()">
+        🔄 بروزرسانی
+      </button>
+
+      <button class="danger" onclick="leaveRoom()">
+        خروج از روم
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="bottom">
+    HOKM • Telegram Mini App
+  </div>
 
 </div>
 
 
 <script>
 
-/* =========================
-   SUPABASE
-========================= */
+  /* ================================
+     SUPABASE
+  ================================= */
 
-const SUPABASE_URL =
-"https://uhgikijqlirttwdykaah.supabase.co";
+  const SUPABASE_URL =
+    "https://uhgikijqlirttwdykaah.supabase.co";
 
-const SUPABASE_KEY =
-"sb_publishable_jgq1e7NvxiANV8pEyTYKlA_ZobviYyi";
+  const SUPABASE_KEY =
+    "sb_publishable_jgq1e7NvxiANV8pEyTYKlA_ZobviYyi";
 
-const db =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
 
 
-/* =========================
-   TELEGRAM
-========================= */
+  /* ================================
+     TELEGRAM
+  ================================= */
 
-const tg =
-window.Telegram.WebApp;
+  const tg = window.Telegram?.WebApp;
 
-tg.ready();
-tg.expand();
+  if (tg) {
+    tg.ready();
+    tg.expand();
+  }
 
-const telegramUser =
-tg.initDataUnsafe &&
-tg.initDataUnsafe.user;
 
-const telegramId =
-telegramUser && telegramUser.id
-? String(telegramUser.id)
-: "guest-" + Date.now();
+  /* ================================
+     USER
+  ================================= */
 
-const username =
-telegramUser && telegramUser.first_name
-? telegramUser.first_name
-: "Player";
+  let telegramUser = null;
 
-document.getElementById("username")
-.textContent=username;
+  if (
+    tg &&
+    tg.initDataUnsafe &&
+    tg.initDataUnsafe.user
+  ) {
 
+    telegramUser = tg.initDataUnsafe.user;
 
-/* =========================
-   VARIABLES
-========================= */
+  } else {
 
-let currentRoom=null;
-let currentRoomId=null;
+    telegramUser = {
+      id: "web_" + Date.now(),
+      first_name: "Player",
+      username: ""
+    };
 
+  }
 
-/* =========================
-   PAGE
-========================= */
+  const telegramId =
+    String(telegramUser.id);
 
-function hidePages(){
+  const displayName =
+    telegramUser.username
+      ? "@" + telegramUser.username
+      : (
+          telegramUser.first_name ||
+          "Player"
+        );
 
-document.getElementById("home")
-.classList.add("hidden");
+  document.getElementById("username")
+    .textContent = displayName;
 
-document.getElementById("join")
-.classList.add("hidden");
 
-document.getElementById("room")
-.classList.add("hidden");
+  /* ================================
+     VARIABLES
+  ================================= */
 
-}
+  let selectedMode = 4;
+  let currentRoom = null;
+  let currentRoomPlayerId = null;
+  let refreshTimer = null;
 
 
-function home(){
+  /* ================================
+     PAGE CONTROL
+  ================================= */
 
-hidePages();
+  function hideAll() {
 
-document.getElementById("home")
-.classList.remove("hidden");
+    document
+      .querySelectorAll(".card")
+      .forEach(el => {
+        el.classList.add("hidden");
+      });
 
-}
+  }
 
+  function goHome() {
 
-function showJoin(){
+    hideAll();
 
-hidePages();
+    document
+      .getElementById("home")
+      .classList.remove("hidden");
 
-document.getElementById("join")
-.classList.remove("hidden");
+  }
 
-document.getElementById("joinCode")
-.focus();
+  function showModes() {
 
-}
+    hideAll();
 
+    document
+      .getElementById("modes")
+      .classList.remove("hidden");
 
-/* =========================
-   CREATE ROOM
-========================= */
+  }
 
-async function createRoom(){
+  function showCreate() {
 
-try{
+    hideAll();
 
-const code =
-Math.floor(
-100000+
-Math.random()*900000
-).toString();
+    document
+      .getElementById("create")
+      .classList.remove("hidden");
 
+  }
 
-const result =
-await db
-.from("rooms")
-.insert({
-code:code,
-status:"waiting"
-})
-.select()
-.single();
+  function showJoin() {
 
+    hideAll();
 
-if(result.error){
+    document
+      .getElementById("join")
+      .classList.remove("hidden");
 
-console.error(result.error);
+    document
+      .getElementById("roomCode")
+      .focus();
 
-alert(
-"خطا در ساخت روم:\n\n"+
-result.error.message
-);
+  }
 
-return;
 
-}
+  /* ================================
+     MODE
+  ================================= */
 
+  function selectMode(mode) {
 
-currentRoom=code;
+    selectedMode = mode;
 
-currentRoomId=result.data.id;
+    document
+      .getElementById("mode2")
+      .classList.toggle(
+        "selected",
+        mode === 2
+      );
 
+    document
+      .getElementById("mode4")
+      .classList.toggle(
+        "selected",
+        mode === 4
+      );
 
-/* ADD HOST */
+  }
 
-const player =
-await db
-.from("room_players")
-.insert({
-room_id:currentRoomId,
-telegram_id:telegramId,
-username:username,
-seat:1,
-ready:true
-});
+  function setCreateMode(mode) {
 
+    selectedMode = mode;
 
-if(player.error){
+    document
+      .getElementById("create2")
+      .classList.toggle(
+        "selected",
+        mode === 2
+      );
 
-alert(
-"روم ساخته شد ولی بازیکن اضافه نشد:\n\n"+
-player.error.message
-);
+    document
+      .getElementById("create4")
+      .classList.toggle(
+        "selected",
+        mode === 4
+      );
 
-return;
+  }
 
-}
 
+  /* ================================
+     ROOM CODE
+  ================================= */
 
-openRoom();
+  function generateRoomCode() {
 
-loadPlayers();
+    const chars =
+      "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
+    let code = "";
 
-}catch(error){
+    for (let i = 0; i < 6; i++) {
 
-console.error(error);
+      code +=
+        chars.charAt(
+          Math.floor(
+            Math.random() * chars.length
+          )
+        );
 
-alert(
-"خطای اتصال:\n\n"+
-error.message
-);
+    }
 
-}
+    return code;
 
-}
+  }
 
 
-/* =========================
-   OPEN ROOM
-========================= */
+  /* ================================
+     CREATE ROOM
+  ================================= */
 
-function openRoom(){
+  async function createRoom() {
 
-hidePages();
+    const status =
+      document.getElementById(
+        "createStatus"
+      );
 
-document.getElementById("room")
-.classList.remove("hidden");
+    status.className = "status";
 
-document.getElementById("roomCode")
-.textContent=currentRoom;
+    status.innerHTML =
+      '<span class="loader"></span> در حال ساخت روم...';
 
-}
+    try {
 
+      let code = generateRoomCode();
 
-/* =========================
-   JOIN ROOM
-========================= */
+      /*
+       * ساخت روم
+       */
 
-async function joinRoom(){
+      const {
+        data: room,
+        error: roomError
+      } = await supabaseClient
+        .from("rooms")
+        .insert({
+          code: code,
+          status: "waiting",
+          max_players: selectedMode
+        })
+        .select()
+        .single();
 
-const code =
-document.getElementById("joinCode")
-.value
-.trim();
+      if (roomError) {
+        throw roomError;
+      }
 
 
-if(!/^\d{6}$/.test(code)){
+      /*
+       * اضافه کردن سازنده روم
+       */
 
-document.getElementById("joinMessage")
-.innerHTML=
-"<div class='message'>❌ کد باید ۶ رقمی باشد.</div>";
+      const {
+        data: player,
+        error: playerError
+      } = await supabaseClient
+        .from("room_players")
+        .insert({
+          room_id: room.id,
+          telegram_id: telegramId,
+          username: displayName,
+          seat: 1,
+          ready: false
+        })
+        .select()
+        .single();
 
-return;
+      if (playerError) {
 
-}
+        /*
+         * اگر اضافه کردن بازیکن شکست خورد،
+         * روم ساخته شده را حذف می‌کنیم.
+         */
 
+        await supabaseClient
+          .from("rooms")
+          .delete()
+          .eq("id", room.id);
 
-try{
+        throw playerError;
+      }
 
-const result =
-await db
-.from("rooms")
-.select("*")
-.eq("code",code)
-.maybeSingle();
+      currentRoom = room;
+      currentRoomPlayerId = player.id;
 
+      openRoom(room);
 
-if(result.error){
+    } catch (error) {
 
-showJoinError(result.error.message);
+      console.error(error);
 
-return;
+      status.className =
+        "status error";
 
-}
+      status.textContent =
+        "خطا در ساخت روم: " +
+        (error.message || "خطای نامشخص");
 
+    }
 
-if(!result.data){
+  }
 
-showJoinError("روم پیدا نشد.");
 
-return;
+  /* ================================
+     JOIN ROOM
+  ================================= */
 
-}
+  async function joinRoom() {
 
+    const input =
+      document.getElementById(
+        "roomCode"
+      );
 
-const room=result.data;
+    const status =
+      document.getElementById(
+        "joinStatus"
+      );
 
+    const code =
+      input.value
+        .trim()
+        .toUpperCase();
 
-const playersResult =
-await db
-.from("room_players")
-.select("*")
-.eq("room_id",room.id);
+    status.className = "status";
 
+    if (code.length !== 6) {
 
-if(playersResult.error){
+      status.className =
+        "status error";
 
-showJoinError(
-playersResult.error.message
-);
+      status.textContent =
+        "کد روم باید ۶ کاراکتر باشد.";
 
-return;
+      return;
+    }
 
-}
+    status.innerHTML =
+      '<span class="loader"></span> در حال بررسی روم...';
 
+    try {
 
-const players =
-playersResult.data || [];
+      /*
+       * پیدا کردن روم
+       */
 
+      const {
+        data: room,
+        error: roomError
+      } = await supabaseClient
+        .from("rooms")
+        .select("*")
+        .eq("code", code)
+        .maybeSingle();
 
-if(players.length>=4){
+      if (roomError) {
+        throw roomError;
+      }
 
-showJoinError(
-"این روم پر است."
-);
+      if (!room) {
 
-return;
+        status.className =
+          "status error";
 
-}
+        status.textContent =
+          "❌ کد روم پیدا نشد.";
 
+        return;
+      }
 
-const exists =
-players.some(
-p =>
-String(p.telegram_id)===
-String(telegramId)
-);
 
+      /*
+       * بررسی اینکه کاربر قبلاً داخل روم نباشد
+       */
 
-if(!exists){
+      const {
+        data: existingPlayer
+      } = await supabaseClient
+        .from("room_players")
+        .select("*")
+        .eq("room_id", room.id)
+        .eq("telegram_id", telegramId)
+        .maybeSingle();
 
-let seat=1;
+      if (existingPlayer) {
 
-const seats =
-players.map(p=>p.seat);
+        currentRoom = room;
+        currentRoomPlayerId =
+          existingPlayer.id;
 
-while(seats.includes(seat)){
-seat++;
-}
+        openRoom(room);
 
+        return;
+      }
 
-const insert =
-await db
-.from("room_players")
-.insert({
-room_id:room.id,
-telegram_id:telegramId,
-username:username,
-seat:seat,
-ready:false
-});
 
+      /*
+       * گرفتن بازیکنان فعلی
+       */
 
-if(insert.error){
+      const {
+        data: players,
+        error: playersError
+      } = await supabaseClient
+        .from("room_players")
+        .select("id, seat")
+        .eq("room_id", room.id);
 
-showJoinError(
-insert.error.message
-);
+      if (playersError) {
+        throw playersError;
+      }
 
-return;
+      const count =
+        players
+          ? players.length
+          : 0;
 
-}
 
-}
+      /*
+       * روم پر است
+       */
 
+      if (count >= room.max_players) {
 
-currentRoom=code;
+        status.className =
+          "status error";
 
-currentRoomId=room.id;
+        status.textContent =
+          "❌ این روم پر است.";
 
-openRoom();
+        return;
+      }
 
-loadPlayers();
 
+      /*
+       * انتخاب صندلی
+       */
 
-}catch(error){
+      const usedSeats =
+        (players || [])
+          .map(p => p.seat);
 
-showJoinError(
-error.message
-);
+      let seat = 1;
 
-}
+      while (
+        usedSeats.includes(seat)
+      ) {
+        seat++;
+      }
 
-}
 
+      /*
+       * ورود بازیکن
+       */
 
-function showJoinError(message){
+      const {
+        data: player,
+        error: insertError
+      } = await supabaseClient
+        .from("room_players")
+        .insert({
+          room_id: room.id,
+          telegram_id: telegramId,
+          username: displayName,
+          seat: seat,
+          ready: false
+        })
+        .select()
+        .single();
 
-document.getElementById("joinMessage")
-.innerHTML=
-"<div class='message'>❌ "+
-message+
-"</div>";
+      if (insertError) {
+        throw insertError;
+      }
 
-}
+      /*
+       * اگر روم کامل شد
+       */
 
+      if (count + 1 >= room.max_players) {
 
-/* =========================
-   LOAD PLAYERS
-========================= */
+        await supabaseClient
+          .from("rooms")
+          .update({
+            status: "full"
+          })
+          .eq("id", room.id);
 
-async function loadPlayers(){
+        room.status = "full";
+      }
 
-if(!currentRoomId)return;
+      currentRoom = room;
+      currentRoomPlayerId = player.id;
 
+      openRoom(room);
 
-const result =
-await db
-.from("room_players")
-.select("*")
-.eq("room_id",currentRoomId)
-.order("seat");
+    } catch (error) {
 
+      console.error(error);
 
-if(result.error){
+      status.className =
+        "status error";
 
-document.getElementById("players")
-.innerHTML=
-"❌ "+result.error.message;
+      status.textContent =
+        "خطا در ورود به روم: " +
+        (error.message || "خطای نامشخص");
 
-return;
+    }
 
-}
+  }
 
 
-let html="";
+  /* ================================
+     OPEN ROOM
+  ================================= */
 
+  function openRoom(room) {
 
-for(let i=1;i<=4;i++){
+    hideAll();
 
-const player =
-result.data.find(
-p=>p.seat===i
-);
+    document
+      .getElementById("room")
+      .classList.remove("hidden");
 
+    document
+      .getElementById("roomCodeDisplay")
+      .textContent =
+        room.code;
 
-if(player){
+    updateRoomInfo();
 
-html+=
-"<div class='player-slot'>"+
-"👤 "+
-escapeHtml(player.username||"Player")+
-"<span style='float:left'>"+
-(player.ready?"🟢 آماده":"🟡 منتظر")+
-"</span>"+
-"</div>";
+    if (refreshTimer) {
+      clearInterval(refreshTimer);
+    }
 
-}else{
+    refreshTimer =
+      setInterval(
+        refreshRoom,
+        3000
+      );
 
-html+=
-"<div class='player-slot'>"+
-"⭕ جایگاه "+i+
-"<span style='float:left'>خالی</span>"+
-"</div>";
+  }
 
-}
 
-}
+  /* ================================
+     REFRESH ROOM
+  ================================= */
 
+  async function refreshRoom() {
 
-document.getElementById("players")
-.innerHTML=html;
+    if (!currentRoom) {
+      return;
+    }
 
-}
+    try {
 
+      const {
+        data: room,
+        error: roomError
+      } = await supabaseClient
+        .from("rooms")
+        .select("*")
+        .eq("id", currentRoom.id)
+        .single();
 
-/* =========================
-   COPY
-========================= */
+      if (roomError) {
+        throw roomError;
+      }
 
-async function copyCode(){
+      currentRoom = room;
 
-try{
 
-await navigator.clipboard
-.writeText(currentRoom);
+      const {
+        data: players,
+        error: playersError
+      } = await supabaseClient
+        .from("room_players")
+        .select("id, telegram_id, username, seat, ready")
+        .eq("room_id", room.id)
+        .order("seat");
 
-alert("✅ کد کپی شد");
+      if (playersError) {
+        throw playersError;
+      }
 
-}catch{
+      const count =
+        players
+          ? players.length
+          : 0;
 
-alert(
-"کد روم:\n"+
-currentRoom
-);
+      document
+        .getElementById("playersCount")
+        .textContent =
+          count +
+          " / " +
+          room.max_players +
+          " بازیکن";
 
-}
 
-}
+      const roomStatus =
+        document.getElementById(
+          "roomStatus"
+        );
 
+      if (count >= room.max_players) {
 
-/* =========================
-   SHARE
-========================= */
+        roomStatus.className =
+          "status success";
 
-function shareRoom(){
+        roomStatus.textContent =
+          "🎉 روم کامل شد! آماده شروع بازی.";
 
-const text=
-"🎮 بیا حکم بازی کنیم!\n"+
-"🃏 کد روم: "+
-currentRoom;
+      } else {
 
+        roomStatus.className =
+          "status";
 
-const url=
-"https://t.me/share/url?url="+
-encodeURIComponent(
-"https://aliabbaszadeh0923-creator.github.io/Hokm_mini_app/"
-)+
-"&text="+
-encodeURIComponent(text);
+        roomStatus.textContent =
+          "در انتظار " +
+          (room.max_players - count) +
+          " بازیکن دیگر...";
 
+      }
 
-if(tg.openTelegramLink){
+    } catch (error) {
 
-tg.openTelegramLink(url);
+      console.error(
+        "Refresh error:",
+        error
+      );
 
-}else{
+    }
 
-window.open(url,"_blank");
+  }
 
-}
 
-}
+  /* ================================
+     ROOM INFO
+  ================================= */
 
+  async function updateRoomInfo() {
 
-/* =========================
-   SECURITY
-========================= */
+    if (!currentRoom) {
+      return;
+    }
 
-function escapeHtml(value){
+    await refreshRoom();
 
-return String(value)
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+  }
 
-}
+
+  /* ================================
+     LEAVE ROOM
+  ================================= */
+
+  async function leaveRoom() {
+
+    if (!currentRoomPlayerId) {
+
+      goHome();
+
+      return;
+    }
+
+    try {
+
+      await supabaseClient
+        .from("room_players")
+        .delete()
+        .eq(
+          "id",
+          currentRoomPlayerId
+        );
+
+    } catch (error) {
+
+      console.error(error);
+
+    }
+
+    if (refreshTimer) {
+      clearInterval(refreshTimer);
+      refreshTimer = null;
+    }
+
+    currentRoom = null;
+    currentRoomPlayerId = null;
+
+    goHome();
+
+  }
+
+
+  /* ================================
+     ENTER KEY
+  ================================= */
+
+  document
+    .getElementById("roomCode")
+    .addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+          joinRoom();
+        }
+
+      }
+    );
 
 </script>
 
 </body>
-  </html>
+   </html>
